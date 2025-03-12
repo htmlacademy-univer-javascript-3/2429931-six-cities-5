@@ -1,6 +1,5 @@
-const CitiesCard = (): JSX.Element => {
-  return (
-    <article className="cities__card place-card">
+const CitiesCard = (): JSX.Element => (
+  <article className="cities__card place-card">
     <div className="place-card__mark">
       <span>Premium</span>
     </div>
@@ -24,7 +23,7 @@ const CitiesCard = (): JSX.Element => {
       </div>
       <div className="place-card__rating rating">
         <div className="place-card__stars rating__stars">
-          <span style={{width : "80%"}}></span>
+          <span style={{width : '80%'}}></span>
           <span className="visually-hidden">Rating</span>
         </div>
       </div>
@@ -34,7 +33,6 @@ const CitiesCard = (): JSX.Element => {
       <p className="place-card__type">Apartment</p>
     </div>
   </article>
-  )
-};
+);
 
 export default CitiesCard;
