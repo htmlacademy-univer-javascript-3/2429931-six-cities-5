@@ -1,4 +1,4 @@
-import CitiesCard from '../../components/cities-card/cities-card';
+import CitiesCard from '../../components/citiesCard/Index';
 
 type MainPageProps = {
   numberOffers: number;
