@@ -1,4 +1,4 @@
-const Offer = () => (
+const Offer = (): JSX.Element => (
   <div className="page">
     <header className="header">
       <div className="container">

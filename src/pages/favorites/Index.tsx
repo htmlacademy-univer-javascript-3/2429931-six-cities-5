@@ -1,4 +1,4 @@
-const Favorite = () => (
+const Favorite = (): JSX.Element => (
   <div className="page">
     <header className="header">
       <div className="container">
