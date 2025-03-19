@@ -1,4 +1,4 @@
-const Offer = (): JSX.Element => (
+export const OffersScreen = (): JSX.Element => (
   <div className="page">
     <header className="header">
       <div className="container">
@@ -333,5 +333,3 @@ const Offer = (): JSX.Element => (
     </main>
   </div>
 );
-
-export default Offer;

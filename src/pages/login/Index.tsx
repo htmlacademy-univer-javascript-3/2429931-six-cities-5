@@ -1,4 +1,4 @@
-const Login = (): JSX.Element => (
+export const LoginScreen = (): JSX.Element => (
   <div className="page page--gray page--login">
     <header className="header">
       <div className="container">
@@ -40,4 +40,3 @@ const Login = (): JSX.Element => (
   </div>
 );
 
-export default Login;

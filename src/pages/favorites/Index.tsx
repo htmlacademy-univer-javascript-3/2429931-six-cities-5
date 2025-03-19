@@ -1,4 +1,4 @@
-const Favorite = (): JSX.Element => (
+export const FavoriteScreen = (): JSX.Element => (
   <div className="page">
     <header className="header">
       <div className="container">
@@ -165,5 +165,3 @@ const Favorite = (): JSX.Element => (
     </footer>
   </div>
 );
-
-export default Favorite;
