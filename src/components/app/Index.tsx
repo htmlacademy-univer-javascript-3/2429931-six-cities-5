@@ -3,7 +3,7 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import { AppPath, AuthorizationStatus } from '../../const';
 import { LoginScreen } from '../../pages/login/Index';
 import { FavoriteScreen } from '../../pages/favorites/Index';
-import { OffersScreen } from '../../pages/offer/Index';
+import { OfferScreen } from '../../pages/offer/Index';
 import { NotFoundScreen } from '../../pages/notFoundScreen/Index';
 import { PrivateRoute } from '../privateRoute/Index';
 
@@ -37,8 +37,8 @@ const App = ({numberOffers}: AppProps): JSX.Element => (
         }
       />
       <Route
-        path={AppPath.Offers}
-        element={<OffersScreen/>}
+        path={AppPath.Offer}
+        element={<OfferScreen/>}
       />
       <Route
         path='/*'

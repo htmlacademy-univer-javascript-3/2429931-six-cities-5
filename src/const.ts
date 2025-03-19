@@ -4,7 +4,7 @@ export enum AppPath {
   Main = '/',
   Login = '/login',
   Favorites = '/favorites',
-  Offers = '/offers',
+  Offer = '/offer',
 }
 
 export enum AuthorizationStatus {

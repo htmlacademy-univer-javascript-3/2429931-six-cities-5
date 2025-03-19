@@ -1,4 +1,4 @@
-export const OffersScreen = (): JSX.Element => (
+export const OfferScreen = (): JSX.Element => (
   <div className="page">
     <header className="header">
       <div className="container">
