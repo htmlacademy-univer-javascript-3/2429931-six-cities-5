@@ -1,6 +1,6 @@
 import MainPage from '../../pages/main/Index';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
-import { AppPath, AuthorizationStatus } from '../../const';
+import { AppPath} from '../../const';
 import { LoginScreen } from '../../pages/login/Index';
 import { FavoriteScreen } from '../../pages/favorites/Index';
 import { OfferScreen } from '../../pages/offer/Index';
