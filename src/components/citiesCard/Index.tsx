@@ -2,10 +2,18 @@ import { Offer } from '../../types/offers';
 
 type CitiesCardProps = {
   offer: Offer;
+  onActive: (id: string) => void;
 }
 
-const CitiesCard = ({offer}:CitiesCardProps): JSX.Element => (
-  <article className="cities__card place-card">
+const CitiesCard = ({offer, onActive}:CitiesCardProps): JSX.Element => (
+  <article className="cities__card place-card"
+    onMouseEnter={
+      (evt)=>{
+        evt.preventDefault();
+        onActive(offer.id);
+      }
+    }
+  >
     {offer.isPremium
       ? (
         <div className="place-card__mark">
