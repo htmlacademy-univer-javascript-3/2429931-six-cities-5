@@ -6,12 +6,14 @@ import { FavoriteScreen } from '../../pages/favorites/Index';
 import { OfferScreen } from '../../pages/offer/Index';
 import { NotFoundScreen } from '../../pages/notFoundScreen/Index';
 import { PrivateRoute } from '../privateRoute/Index';
+import { Offers } from '../../types/offers';
 
 type AppProps = {
   numberOffers: number;
+  offers: Offers;
 }
 
-const App = ({numberOffers}: AppProps): JSX.Element => (
+const App = ({numberOffers, offers}: AppProps): JSX.Element => (
   <BrowserRouter>
     <Routes>
       <Route
@@ -19,6 +21,7 @@ const App = ({numberOffers}: AppProps): JSX.Element => (
         element={
           <MainPage
             numberOffers={numberOffers}
+            offers={offers}
           />
         }
       />

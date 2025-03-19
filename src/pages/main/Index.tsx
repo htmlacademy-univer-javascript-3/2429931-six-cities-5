@@ -1,10 +1,12 @@
-import CitiesCard from '../../components/citiesCard/Index';
+import { CitiesCardsList } from '../../components/citiesCardsList/Index';
+import { Offers } from '../../types/offers';
 
 type MainPageProps = {
   numberOffers: number;
+  offers: Offers;
 }
 
-const MainPage = ({numberOffers}: MainPageProps) : JSX.Element => (
+const MainPage = ({numberOffers, offers}: MainPageProps) : JSX.Element => (
   <div className="page page--gray page--main">
     <header className="header">
       <div className="container">
@@ -94,11 +96,9 @@ const MainPage = ({numberOffers}: MainPageProps) : JSX.Element => (
               </ul>
             </form>
             <div className="cities__places-list places__list tabs__content">
-              <CitiesCard />
-              <CitiesCard />
-              <CitiesCard />
-              <CitiesCard />
-              <CitiesCard />
+              <CitiesCardsList
+                offers={offers}
+              />
             </div>
           </section>
           <div className="cities__right-section">
