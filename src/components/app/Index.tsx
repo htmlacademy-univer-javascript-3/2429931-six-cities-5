@@ -1,10 +1,11 @@
 import MainPage from '../../pages/main/Index';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
-import { AppPath } from '../../const';
+import { AppPath, AuthorizationStatus } from '../../const';
 import { LoginScreen } from '../../pages/login/Index';
 import { FavoriteScreen } from '../../pages/favorites/Index';
 import { OffersScreen } from '../../pages/offer/Index';
 import { NotFoundScreen } from '../../pages/notFoundScreen/Index';
+import { PrivateRoute } from '../privateRoute/Index';
 
 type AppProps = {
   numberOffers: number;
@@ -27,7 +28,13 @@ const App = ({numberOffers}: AppProps): JSX.Element => (
       />
       <Route
         path={AppPath.Favorites}
-        element={<FavoriteScreen/>}
+        element={
+          <PrivateRoute
+            authStatus={AuthorizationStatus.NoAuth}
+          >
+            <FavoriteScreen/>
+          </PrivateRoute>
+        }
       />
       <Route
         path={AppPath.Offers}
