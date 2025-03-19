@@ -4,7 +4,7 @@ import {reviews} from '../mocks/reviews';
 export const offersAllInfo: Offers = [
   {
     'id': '1af6f711-c28d-4121-82cd-e0b462a27f00',
-    'title': 'Beautiful & luxurious studio at great location',
+    'title': 'Luxurious studio at great location',
     'type': 'apartment',
     'price': 120,
     'city': {
@@ -21,9 +21,9 @@ export const offersAllInfo: Offers = [
       'zoom': 8
     },
     'isFavorite': false,
-    'isPremium': false,
-    'rating': 4,
-    'previewImage': 'https://url-to-image/image.png',
+    'isPremium': true,
+    'rating': 2,
+    'previewImage': 'img/apartment-01.jpg',
     'description': 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
     'bedrooms': 3,
     'goods': [
@@ -42,7 +42,7 @@ export const offersAllInfo: Offers = [
   },{
     'id': '2af6f711-c28d-4121-82cd-e0b462a27f00',
     'title': 'Beautiful & luxurious studio at great location',
-    'type': 'apartment',
+    'type': 'room',
     'price': 1200,
     'city': {
       'name': 'Borzya',
@@ -60,7 +60,7 @@ export const offersAllInfo: Offers = [
     'isFavorite': false,
     'isPremium': false,
     'rating': 4,
-    'previewImage': 'https://url-to-image/image.png',
+    'previewImage': 'img/apartment-02.jpg',
     'description': 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
     'bedrooms': 3,
     'goods': [
@@ -78,7 +78,7 @@ export const offersAllInfo: Offers = [
     reviews: [reviews[1]]
   },{
     'id': '3af6f711-c28d-4121-82cd-e0b462a27f00',
-    'title': 'Beautiful & luxurious studio at great location',
+    'title': 'oooooo. Beautiful & luxurious studio at great location',
     'type': 'apartment',
     'price': 12000,
     'city': {
@@ -97,7 +97,7 @@ export const offersAllInfo: Offers = [
     'isFavorite': false,
     'isPremium': false,
     'rating': 4,
-    'previewImage': 'https://url-to-image/image.png',
+    'previewImage': 'img/apartment-03.jpg',
     'description': 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
     'bedrooms': 3,
     'goods': [
@@ -115,7 +115,7 @@ export const offersAllInfo: Offers = [
     reviews: [reviews[3]]
   },{
     'id': '4af6f711-c28d-4121-82cd-e0b462a27f00',
-    'title': 'Beautiful & luxurious studio at great location',
+    'title': 'AAAAAA. Beautiful & luxurious studio at great location',
     'type': 'apartment',
     'price': 120000,
     'city': {
@@ -133,8 +133,8 @@ export const offersAllInfo: Offers = [
     },
     'isFavorite': false,
     'isPremium': false,
-    'rating': 4,
-    'previewImage': 'https://url-to-image/image.png',
+    'rating': 1,
+    'previewImage': 'img/apartment-01.jpg',
     'description': 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
     'bedrooms': 3,
     'goods': [
