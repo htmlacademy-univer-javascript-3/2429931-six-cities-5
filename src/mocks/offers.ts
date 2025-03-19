@@ -1,6 +1,7 @@
 import { Offers } from '../types/offers';
+import {reviews} from '../mocks/reviews';
 
-export const OffersAllInfo: Offers = [
+export const offersAllInfo: Offers = [
   {
     'id': '1af6f711-c28d-4121-82cd-e0b462a27f00',
     'title': 'Beautiful & luxurious studio at great location',
@@ -36,7 +37,8 @@ export const OffersAllInfo: Offers = [
     'images': [
       'https://url-to-image/image.png'
     ],
-    'maxAdults': 4
+    'maxAdults': 4,
+    reviews: [reviews[0]]
   },{
     'id': '2af6f711-c28d-4121-82cd-e0b462a27f00',
     'title': 'Beautiful & luxurious studio at great location',
@@ -72,7 +74,8 @@ export const OffersAllInfo: Offers = [
     'images': [
       'https://url-to-image/image.png'
     ],
-    'maxAdults': 4
+    'maxAdults': 4,
+    reviews: [reviews[1]]
   },{
     'id': '3af6f711-c28d-4121-82cd-e0b462a27f00',
     'title': 'Beautiful & luxurious studio at great location',
@@ -108,7 +111,8 @@ export const OffersAllInfo: Offers = [
     'images': [
       'https://url-to-image/image.png'
     ],
-    'maxAdults': 4
+    'maxAdults': 4,
+    reviews: [reviews[3]]
   },{
     'id': '4af6f711-c28d-4121-82cd-e0b462a27f00',
     'title': 'Beautiful & luxurious studio at great location',
@@ -144,6 +148,7 @@ export const OffersAllInfo: Offers = [
     'images': [
       'https://url-to-image/image.png'
     ],
-    'maxAdults': 4
+    'maxAdults': 4,
+    reviews: []
   }
 ];
