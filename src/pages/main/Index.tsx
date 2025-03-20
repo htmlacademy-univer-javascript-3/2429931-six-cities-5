@@ -1,6 +1,8 @@
 import { CitiesCardsList } from '../../components/citiesCardsList/Index';
 import { Offers } from '../../types/offers';
 import { Header } from '../../components/header/Index';
+import { CITIES } from '../../const';
+import { Link } from 'react-router-dom';
 
 type MainPageProps = {
   numberOffers: number;
@@ -15,36 +17,12 @@ const MainPage = ({numberOffers, offers}: MainPageProps) : JSX.Element => (
       <div className="tabs">
         <section className="locations container">
           <ul className="locations__list tabs__list">
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item" href="#">
-                <span>Paris</span>
-              </a>
-            </li>
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item" href="#">
-                <span>Cologne</span>
-              </a>
-            </li>
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item" href="#">
-                <span>Brussels</span>
-              </a>
-            </li>
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item tabs__item--active">
-                <span>Amsterdam</span>
-              </a>
-            </li>
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item" href="#">
-                <span>Hamburg</span>
-              </a>
-            </li>
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item" href="#">
-                <span>Dusseldorf</span>
-              </a>
-            </li>
+            {CITIES.map((city) =>(
+              <li key={city} className="locations__item">
+                <Link className="locations__item-link tabs__item" to="#">
+                  <span>{city}</span>
+                </Link>
+              </li>))}
           </ul>
         </section>
       </div>
