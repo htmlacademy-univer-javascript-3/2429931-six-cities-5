@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { Offer } from '../../types/offers';
 import { PremiumCard } from '../premiumCard/Index';
 
@@ -43,7 +44,7 @@ const CitiesCard = ({offer, onActive}:CitiesCardProps): JSX.Element => (
         </div>
       </div>
       <h2 className="place-card__name">
-        <a href="#">{offer.title}</a>
+        <Link to={`/offer/${offer.id}`}>{offer.title}</Link>
       </h2>
       <p className="place-card__type">{offer.type}</p>
     </div>
