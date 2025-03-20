@@ -7,7 +7,7 @@ type CitiesCardsListProps = {
 }
 
 export const CitiesCardsList = ({offers}: CitiesCardsListProps) => {
-  const [activeCard, setActiveCard] = useState('');
+  const [, setActiveCard] = useState('');
 
   return(
     <>

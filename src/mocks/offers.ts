@@ -20,7 +20,7 @@ export const offersAllInfo: Offers = [
       'longitude': 4.673877537499948,
       'zoom': 8
     },
-    'isFavorite': false,
+    'isFavorite': true,
     'isPremium': true,
     'rating': 2,
     'previewImage': 'img/apartment-01.jpg',
@@ -45,7 +45,7 @@ export const offersAllInfo: Offers = [
     'type': 'room',
     'price': 1200,
     'city': {
-      'name': 'Borzya',
+      'name': 'Amsterdam',
       'location': {
         'latitude': 52.35514938496378,
         'longitude': 4.673877537499948,
@@ -57,7 +57,7 @@ export const offersAllInfo: Offers = [
       'longitude': 4.673877537499948,
       'zoom': 8
     },
-    'isFavorite': false,
+    'isFavorite': true,
     'isPremium': false,
     'rating': 4,
     'previewImage': 'img/apartment-02.jpg',
@@ -82,7 +82,7 @@ export const offersAllInfo: Offers = [
     'type': 'apartment',
     'price': 12000,
     'city': {
-      'name': 'Mos',
+      'name': 'Paris',
       'location': {
         'latitude': 52.35514938496378,
         'longitude': 4.673877537499948,
@@ -94,7 +94,7 @@ export const offersAllInfo: Offers = [
       'longitude': 4.673877537499948,
       'zoom': 8
     },
-    'isFavorite': false,
+    'isFavorite': true,
     'isPremium': false,
     'rating': 4,
     'previewImage': 'img/apartment-03.jpg',
@@ -119,7 +119,7 @@ export const offersAllInfo: Offers = [
     'type': 'apartment',
     'price': 120000,
     'city': {
-      'name': 'Atos',
+      'name': 'Cologne',
       'location': {
         'latitude': 52.35514938496378,
         'longitude': 4.673877537499948,
@@ -131,7 +131,7 @@ export const offersAllInfo: Offers = [
       'longitude': 4.673877537499948,
       'zoom': 8
     },
-    'isFavorite': false,
+    'isFavorite': true,
     'isPremium': false,
     'rating': 1,
     'previewImage': 'img/apartment-01.jpg',
