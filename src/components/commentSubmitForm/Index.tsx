@@ -6,7 +6,7 @@ type FormData = {
   rating: number;
 }
 
-type FieldName = 'comment' | 'rating';
+type FieldName = keyof FormData;
 
 const ratings: number[] = [5,4,3,2,1];
 

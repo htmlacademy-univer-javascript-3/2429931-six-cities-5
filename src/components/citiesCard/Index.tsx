@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
-import { Offer } from '../../types/offers';
+import { OffersPreviewInfo } from '../../types/offers';
 import { PremiumCard } from '../premiumCard/Index';
 import { linkToOfferForId } from '../../utils';
 
 type CitiesCardProps = {
-  offer: Offer;
+  offer: OffersPreviewInfo;
   onMouseEnter: () => void;
   onMouseLeave: () => void;
 }

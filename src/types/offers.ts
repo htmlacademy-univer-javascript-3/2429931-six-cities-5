@@ -1,13 +1,13 @@
 import { Review } from './reviews';
 
-export type Offer = Pick<OffersPreviewInfo,'previewImage'> & OffersBigInfo
+export type Offer = OffersPreviewInfo | OffersBigInfo
 
 export type OffersCommonInfo = {
   id: string;
   title: string;
   type: string;
   price: number;
-  city: OffersPrevInfoCity;
+  city: OffersPreviewInfoCity;
   location: OfferPreviewInfoLocation;
   isFavorite: boolean;
   isPremium: boolean;
@@ -21,7 +21,7 @@ export type OffersBigInfo = OffersCommonInfo & {
   host: OffersBigInfoHost;
   images: string[];
   maxAdults: number;
-  reviews: Review[];
+  reviews?: Review[];
 }
 
 export type OffersBigInfoHost = {
@@ -40,7 +40,11 @@ export type OfferPreviewInfoLocation = {
   zoom: number;
 }
 
-export type OffersPrevInfoCity = {
+export type OffersPreviewInfoCity = {
   name: string;
   location: OfferPreviewInfoLocation;
+}
+
+export type GroupedOffersByCity = {
+  [city: string]: Offer[];
 }

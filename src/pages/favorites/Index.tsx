@@ -9,7 +9,7 @@ type FavoriteScreenProps = {
 }
 
 export const FavoriteScreen = ({offers}: FavoriteScreenProps): JSX.Element => {
-  const filterOffers: Offer[] = offers.filter((offer)=>offer.isFavorite === true);
+  const filterOffers = offers.filter((offer)=>offer.isFavorite);
 
   return(
     <div className="page">
