@@ -1,5 +1,3 @@
-export type Reviews = Review[]
-
 export type Review = {
   id: string;
   date: string;

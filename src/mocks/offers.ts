@@ -1,7 +1,7 @@
-import { Offers } from '../types/offers';
+import { Offer } from '../types/offers';
 import {reviews} from '../mocks/reviews';
 
-export const offersAllInfo: Offers = [
+export const offersAllInfo: Offer[] = [
   {
     'id': '1af6f711-c28d-4121-82cd-e0b462a27f00',
     'title': 'Luxurious studio at great location',
@@ -27,7 +27,7 @@ export const offersAllInfo: Offers = [
     'description': 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
     'bedrooms': 3,
     'goods': [
-      'Heating'
+      'Heating','Heating'
     ],
     'host': {
       'name': 'Oliver Conner',

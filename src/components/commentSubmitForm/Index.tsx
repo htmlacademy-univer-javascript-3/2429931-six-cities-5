@@ -1,27 +1,39 @@
 import {Fragment, useState } from 'react';
 import { RATING_TITLES } from '../../const';
 
+type FormData = {
+  comment: string;
+  rating: number;
+}
+
+type FieldName = 'comment' | 'rating';
+
+const ratings: number[] = [5,4,3,2,1];
+
 export const CommentSubmitForm = () => {
-  const [formData, setFormData] = useState({
-    review: '',
-    rating: '',
+  const [formData, setFormData] = useState<FormData>({
+    comment: '',
+    rating: 0,
   });
 
   const handleFieldChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const {name, value} = event.target;
-    setFormData({...formData, [name]: value});
+    const {name, value} = event.target as HTMLInputElement & {name: FieldName};
+    setFormData((prevState) => ({
+      ...prevState,
+      [name]: name === 'rating' ? Number(value) : value,
+    }));
   };
 
   return(
     <form className="reviews__form form" action="#" method="post">
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
-        {['5','4','3','2','1'].map((rating) => (
+        {ratings.map((rating) => (
           <Fragment key={rating}>
             <input className="form__rating-input visually-hidden" name="rating" value={rating} id={`${rating}-stars`} type="radio"
               onChange={handleFieldChange}
             />
-            <label htmlFor={`${rating}-stars`} className="reviews__rating-label form__rating-label" title={RATING_TITLES[Number(rating) - 1]}>
+            <label htmlFor={`${rating}-stars`} className="reviews__rating-label form__rating-label" title={RATING_TITLES[rating - 1]}>
               <svg className="form__star-image" width="37" height="33">
                 <use xlinkHref="#icon-star"></use>
               </svg>
@@ -29,8 +41,8 @@ export const CommentSubmitForm = () => {
           </ Fragment>
         ))}
       </div>
-      <textarea className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved"
-        value={formData.review}
+      <textarea className="reviews__textarea form__textarea" id="review" name="comment" placeholder="Tell how was your stay, what you like and what can be improved"
+        value={formData.comment}
         onChange={handleFieldChange}
       >
       </textarea>

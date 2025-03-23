@@ -1,20 +1,28 @@
 import { Link } from 'react-router-dom';
-import { CITIES} from '../../const';
-import { Offers } from '../../types/offers';
+import { Offer } from '../../types/offers';
 import { FavoriteCard } from '../favoriteCard/Index';
 
-function filterOffersInCity(offers: Offers, city: string): Offers{
-  return offers.filter((offer)=>offer.city.name === city);
-}
 type FavoritesCardsListProps = {
-  offers: Offers;
+  offers: Offer[];
 }
-export const FavoritesCardsList = ({offers}: FavoritesCardsListProps) => (
-  <ul className="favorites__list">
-    {CITIES.map((city)=>{
-      const offersInCityArray = filterOffersInCity(offers, city);
-      return(
-        offersInCityArray.length !== 0
+type GroupedOffersByCity = {
+  [city: string]: Offer[];
+}
+
+export const FavoritesCardsList = ({offers}: FavoritesCardsListProps) => {
+  const groupedOffersByCity = offers.reduce<GroupedOffersByCity>((newGroupedOffers, offer) => {
+    const city: string = offer.city.name;
+    if (!newGroupedOffers[city]){
+      newGroupedOffers[city] = [];
+    }
+    newGroupedOffers[city].push(offer);
+    return newGroupedOffers;
+  }, {});
+
+  return(
+    <ul className="favorites__list">
+      {Object.entries(groupedOffersByCity).map(([city, groupedOffers])=>(
+        offers.length !== 0
           ?
           <li key={city} className="favorites__locations-items">
             <div className="favorites__locations locations locations--current">
@@ -25,7 +33,7 @@ export const FavoritesCardsList = ({offers}: FavoritesCardsListProps) => (
               </div>
             </div>
             <div className="favorites__places">
-              {offersInCityArray.map((offer)=>(
+              {groupedOffers.map((offer)=>(
                 <FavoriteCard
                   key={offer.id}
                   offer={offer}
@@ -34,7 +42,7 @@ export const FavoritesCardsList = ({offers}: FavoritesCardsListProps) => (
             </div>
           </li>
           : null
-      );
-    })}
-  </ul>
-);
+      ))}
+    </ul>
+  );
+};

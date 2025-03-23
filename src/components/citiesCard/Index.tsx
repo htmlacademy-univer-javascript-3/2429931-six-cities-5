@@ -1,26 +1,24 @@
 import { Link } from 'react-router-dom';
 import { Offer } from '../../types/offers';
 import { PremiumCard } from '../premiumCard/Index';
+import { linkToOfferForId } from '../../utils';
 
 type CitiesCardProps = {
   offer: Offer;
-  onActive: (id: string) => void;
+  onMouseEnter: () => void;
+  onMouseLeave: () => void;
 }
 
-const CitiesCard = ({offer, onActive}:CitiesCardProps): JSX.Element => (
+const CitiesCard = ({offer, onMouseEnter, onMouseLeave}:CitiesCardProps): JSX.Element => (
   <article className="cities__card place-card"
-    onMouseEnter={
-      (evt)=>{
-        evt.preventDefault();
-        onActive(offer.id);
-      }
-    }
+    onMouseEnter={onMouseEnter}
+    onMouseLeave={onMouseLeave}
   >
     {offer.isPremium
       ? <PremiumCard/>
       : null}
     <div className="cities__image-wrapper place-card__image-wrapper">
-      <Link to={`/offer/${offer.id}`}>
+      <Link to={linkToOfferForId(offer)}>
         <img className="place-card__image" src={offer.previewImage} width="260" height="200" alt="Place image" />
       </Link>
     </div>
@@ -44,7 +42,7 @@ const CitiesCard = ({offer, onActive}:CitiesCardProps): JSX.Element => (
         </div>
       </div>
       <h2 className="place-card__name">
-        <Link to={`/offer/${offer.id}`}>{offer.title}</Link>
+        <Link to={linkToOfferForId(offer)}>{offer.title}</Link>
       </h2>
       <p className="place-card__type">{offer.type}</p>
     </div>

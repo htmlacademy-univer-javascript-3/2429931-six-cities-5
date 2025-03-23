@@ -1,13 +1,21 @@
 import { useState } from 'react';
-import {Offers} from '../../types/offers';
+import {Offer} from '../../types/offers';
 import CitiesCard from '../citiesCard/Index';
 
 type CitiesCardsListProps = {
-  offers: Offers;
+  offers: Offer[];
 }
 
 export const CitiesCardsList = ({offers}: CitiesCardsListProps) => {
-  const [, setActiveCard] = useState('');
+  const [, setActiveCard] = useState<string>('');
+
+  const handleMouseEnter = (id: string) => {
+    setActiveCard(id);
+  };
+
+  const handleMouseLeave = () => {
+    setActiveCard('');
+  };
 
   return(
     <>
@@ -15,9 +23,8 @@ export const CitiesCardsList = ({offers}: CitiesCardsListProps) => {
         <CitiesCard
           key={offer.id}
           offer={offer}
-          onActive={(id)=>{
-            setActiveCard(id);
-          }}
+          onMouseEnter={() => handleMouseEnter(offer.id)}
+          onMouseLeave={() => handleMouseLeave}
         />
       ))}
     </>);

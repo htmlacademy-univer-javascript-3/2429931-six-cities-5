@@ -1,15 +1,14 @@
 import { CitiesCardsList } from '../../components/citiesCardsList/Index';
-import { Offers } from '../../types/offers';
+import { Offer } from '../../types/offers';
 import { Header } from '../../components/header/Index';
 import { CITIES } from '../../const';
 import { Link } from 'react-router-dom';
 
 type MainPageProps = {
-  numberOffers: number;
-  offers: Offers;
+  offers: Offer[];
 }
 
-const MainPage = ({numberOffers, offers}: MainPageProps) : JSX.Element => (
+const MainPage = ({offers}: MainPageProps) : JSX.Element => (
   <div className="page page--gray page--main">
     <Header/>
     <main className="page__main page__main--index">
@@ -30,7 +29,7 @@ const MainPage = ({numberOffers, offers}: MainPageProps) : JSX.Element => (
         <div className="cities__places-container container">
           <section className="cities__places places">
             <h2 className="visually-hidden">Places</h2>
-            <b className="places__found">{numberOffers} places to stay in Amsterdam</b>
+            <b className="places__found">{offers.length} places to stay in Amsterdam</b>
             <form className="places__sorting" action="#" method="get">
               <span className="places__sorting-caption">Sort by</span>
               <span className="places__sorting-type" tabIndex={0}>

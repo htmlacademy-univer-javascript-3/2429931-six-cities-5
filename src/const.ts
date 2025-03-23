@@ -1,5 +1,3 @@
-export const numberRentalOffes = 10;
-
 export enum AppPath {
   Main = '/',
   Login = '/login',

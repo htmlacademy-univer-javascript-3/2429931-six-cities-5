@@ -2,14 +2,14 @@
 import { Link } from 'react-router-dom';
 import { FavoritesCardsList } from '../../components/favoritesCardsList/Index';
 import { Header } from '../../components/header/Index';
-import { Offers } from '../../types/offers';
+import { Offer } from '../../types/offers';
 
 type FavoriteScreenProps = {
-  offers: Offers;
+  offers: Offer[];
 }
 
 export const FavoriteScreen = ({offers}: FavoriteScreenProps): JSX.Element => {
-  const filterOffers: Offers = offers.filter((offer)=>offer.isFavorite === true);
+  const filterOffers: Offer[] = offers.filter((offer)=>offer.isFavorite === true);
 
   return(
     <div className="page">
