@@ -6,19 +6,20 @@ import { FavoriteScreen } from '../../pages/favorites/Index';
 import { OfferScreen } from '../../pages/offer/Index';
 import { NotFoundScreen } from '../../pages/notFoundScreen/Index';
 import { PrivateRoute } from '../privateRoute/Index';
+import { OfferCommonInfo } from '../../types/offers';
 
 type AppProps = {
-  numberOffers: number;
+  offers: OfferCommonInfo[];
 }
 
-const App = ({numberOffers}: AppProps): JSX.Element => (
+const App = ({offers}: AppProps): JSX.Element => (
   <BrowserRouter>
     <Routes>
       <Route
         path={AppPath.Main}
         element={
           <MainPage
-            numberOffers={numberOffers}
+            offers={offers}
           />
         }
       />
@@ -30,9 +31,9 @@ const App = ({numberOffers}: AppProps): JSX.Element => (
         path={AppPath.Favorites}
         element={
           <PrivateRoute
-            authStatus={false}
+            authStatus
           >
-            <FavoriteScreen/>
+            <FavoriteScreen offers={offers}/>
           </PrivateRoute>
         }
       />
