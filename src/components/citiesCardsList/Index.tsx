@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import {Offer, OffersPreviewInfo} from '../../types/offers';
+import {OfferCommonInfo} from '../../types/offers';
 import CitiesCard from '../citiesCard/Index';
 
 type CitiesCardsListProps = {
-  offers: Offer[];
+  offers: OfferCommonInfo[];
 }
 
 export const CitiesCardsList = ({offers}: CitiesCardsListProps) => {
@@ -22,7 +22,7 @@ export const CitiesCardsList = ({offers}: CitiesCardsListProps) => {
       {offers.map((offer)=>(
         <CitiesCard
           key={offer.id}
-          offer={offer as OffersPreviewInfo}
+          offer={offer}
           onMouseEnter={() => handleMouseEnter(offer.id)}
           onMouseLeave={() => handleMouseLeave()}
         />

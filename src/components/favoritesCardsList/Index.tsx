@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
-import { Offer, OffersPreviewInfo } from '../../types/offers';
+import { OfferCommonInfo} from '../../types/offers';
 import { FavoriteCard } from '../favoriteCard/Index';
 import { groupOffersByCity } from '../../utils';
 
 type FavoritesCardsListProps = {
-  offers: Offer[];
+  offers: OfferCommonInfo[];
 }
 
 export const FavoritesCardsList = ({offers}: FavoritesCardsListProps) => (
@@ -22,7 +22,7 @@ export const FavoritesCardsList = ({offers}: FavoritesCardsListProps) => (
           {groupedOffers.map((offer)=>(
             <FavoriteCard
               key={offer.id}
-              offer={offer as OffersPreviewInfo}
+              offer={offer}
             />
           ))}
         </div>

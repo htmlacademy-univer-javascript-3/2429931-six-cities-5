@@ -1,20 +1,20 @@
 import { Review } from './reviews';
+import { User } from './user';
 
-export type Offer = OffersPreviewInfo | OffersBigInfo
-
-export type OffersCommonInfo = {
+export type OfferCommonInfo = {
   id: string;
   title: string;
   type: string;
   price: number;
-  city: OffersPreviewInfoCity;
-  location: OfferPreviewInfoLocation;
+  city: OfferCommonInfoCity;
+  location: OfferCommonInfoLocation;
   isFavorite: boolean;
   isPremium: boolean;
   rating: number;
+  previewImage: string;
 }
 
-export type OffersBigInfo = OffersCommonInfo & {
+export type OfferBigInfo = OfferCommonInfo & {
   description: string;
   bedrooms: number;
   goods: string[];
@@ -24,27 +24,19 @@ export type OffersBigInfo = OffersCommonInfo & {
   reviews?: Review[];
 }
 
-export type OffersBigInfoHost = {
-  name: string;
-  avatarUrl: string;
-  isPro: boolean;
-}
+export type OffersBigInfoHost = User
 
-export type OffersPreviewInfo = OffersCommonInfo & {
-  previewImage: string;
-}
-
-export type OfferPreviewInfoLocation = {
+export type OfferCommonInfoLocation = {
   latitude: number;
   longitude: number;
   zoom: number;
 }
 
-export type OffersPreviewInfoCity = {
+export type OfferCommonInfoCity = {
   name: string;
-  location: OfferPreviewInfoLocation;
+  location: OfferCommonInfoLocation;
 }
 
 export type GroupedOffersByCity = {
-  [city: string]: Offer[];
+  [city: string]: OfferCommonInfo[];
 }

@@ -6,10 +6,10 @@ import { FavoriteScreen } from '../../pages/favorites/Index';
 import { OfferScreen } from '../../pages/offer/Index';
 import { NotFoundScreen } from '../../pages/notFoundScreen/Index';
 import { PrivateRoute } from '../privateRoute/Index';
-import { Offer } from '../../types/offers';
+import { OfferCommonInfo } from '../../types/offers';
 
 type AppProps = {
-  offers: Offer[];
+  offers: OfferCommonInfo[];
 }
 
 const App = ({offers}: AppProps): JSX.Element => (

@@ -1,11 +1,11 @@
 import { CitiesCardsList } from '../../components/citiesCardsList/Index';
-import { Offer } from '../../types/offers';
+import { OfferCommonInfo } from '../../types/offers';
 import { Header } from '../../components/header/Index';
 import { CITIES } from '../../const';
 import { Link } from 'react-router-dom';
 
 type MainPageProps = {
-  offers: Offer[];
+  offers: OfferCommonInfo[];
 }
 
 const MainPage = ({offers}: MainPageProps) : JSX.Element => (

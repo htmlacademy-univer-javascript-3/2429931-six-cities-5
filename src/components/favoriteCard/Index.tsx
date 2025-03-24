@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
-import { OffersPreviewInfo } from '../../types/offers';
+import { OfferCommonInfo} from '../../types/offers';
 import { PremiumCard } from '../premiumCard/Index';
 import { linkToOfferForId } from '../../utils';
 
 type FavoriteCardProps = {
-  offer: OffersPreviewInfo;
+  offer: OfferCommonInfo;
 }
 
 export const FavoriteCard = ({offer}: FavoriteCardProps) => (

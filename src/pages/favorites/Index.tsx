@@ -2,10 +2,10 @@
 import { Link } from 'react-router-dom';
 import { FavoritesCardsList } from '../../components/favoritesCardsList/Index';
 import { Header } from '../../components/header/Index';
-import { Offer } from '../../types/offers';
+import { OfferCommonInfo } from '../../types/offers';
 
 type FavoriteScreenProps = {
-  offers: Offer[];
+  offers: OfferCommonInfo[];
 }
 
 export const FavoriteScreen = ({offers}: FavoriteScreenProps): JSX.Element => {

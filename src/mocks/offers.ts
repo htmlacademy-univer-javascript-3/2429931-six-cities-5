@@ -1,7 +1,7 @@
-import { Offer } from '../types/offers';
-import {reviews} from '../mocks/reviews';
+import {OfferCommonInfo } from '../types/offers';
+// import {reviews} from '../mocks/reviews';
 
-export const offersAllInfo: Offer[] = [
+export const offersAllInfo: OfferCommonInfo[] = [
   {
     'id': '1af6f711-c28d-4121-82cd-e0b462a27f00',
     'title': 'Luxurious studio at great location',
@@ -24,21 +24,21 @@ export const offersAllInfo: Offer[] = [
     'isPremium': true,
     'rating': 2,
     'previewImage': 'img/apartment-01.jpg',
-    'description': 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
-    'bedrooms': 3,
-    'goods': [
-      'Heating','Heating'
-    ],
-    'host': {
-      'name': 'Oliver Conner',
-      'avatarUrl': 'https://url-to-image/image.png',
-      'isPro': false
-    },
-    'images': [
-      'https://url-to-image/image.png'
-    ],
-    'maxAdults': 4,
-    reviews: [reviews[0]]
+    // 'description': 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
+    // 'bedrooms': 3,
+    // 'goods': [
+    //   'Heating','Heating'
+    // ],
+    // 'host': {
+    //   'name': 'Oliver Conner',
+    //   'avatarUrl': 'https://url-to-image/image.png',
+    //   'isPro': false
+    // },
+    // 'images': [
+    //   'https://url-to-image/image.png'
+    // ],
+    // 'maxAdults': 4,
+    // reviews: [reviews[0]]
   },{
     'id': '2af6f711-c28d-4121-82cd-e0b462a27f00',
     'title': 'Beautiful & luxurious studio at great location',
@@ -61,21 +61,21 @@ export const offersAllInfo: Offer[] = [
     'isPremium': false,
     'rating': 4,
     'previewImage': 'img/apartment-02.jpg',
-    'description': 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
-    'bedrooms': 3,
-    'goods': [
-      'Heating'
-    ],
-    'host': {
-      'name': 'Oliver Conner',
-      'avatarUrl': 'https://url-to-image/image.png',
-      'isPro': false
-    },
-    'images': [
-      'https://url-to-image/image.png'
-    ],
-    'maxAdults': 4,
-    reviews: [reviews[1]]
+    // 'description': 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
+    // 'bedrooms': 3,
+    // 'goods': [
+    //   'Heating'
+    // ],
+    // 'host': {
+    //   'name': 'Oliver Conner',
+    //   'avatarUrl': 'https://url-to-image/image.png',
+    //   'isPro': false
+    // },
+    // 'images': [
+    //   'https://url-to-image/image.png'
+    // ],
+    // 'maxAdults': 4,
+    // reviews: [reviews[1]]
   },{
     'id': '3af6f711-c28d-4121-82cd-e0b462a27f00',
     'title': 'oooooo. Beautiful & luxurious studio at great location',
@@ -98,21 +98,21 @@ export const offersAllInfo: Offer[] = [
     'isPremium': false,
     'rating': 4,
     'previewImage': 'img/apartment-03.jpg',
-    'description': 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
-    'bedrooms': 3,
-    'goods': [
-      'Heating'
-    ],
-    'host': {
-      'name': 'Oliver Conner',
-      'avatarUrl': 'https://url-to-image/image.png',
-      'isPro': false
-    },
-    'images': [
-      'https://url-to-image/image.png'
-    ],
-    'maxAdults': 4,
-    reviews: [reviews[3]]
+    // 'description': 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
+    // 'bedrooms': 3,
+    // 'goods': [
+    //   'Heating'
+    // ],
+    // 'host': {
+    //   'name': 'Oliver Conner',
+    //   'avatarUrl': 'https://url-to-image/image.png',
+    //   'isPro': false
+    // },
+    // 'images': [
+    //   'https://url-to-image/image.png'
+    // ],
+    // 'maxAdults': 4,
+    // reviews: [reviews[3]]
   },{
     'id': '4af6f711-c28d-4121-82cd-e0b462a27f00',
     'title': 'AAAAAA. Beautiful & luxurious studio at great location',
@@ -135,20 +135,20 @@ export const offersAllInfo: Offer[] = [
     'isPremium': false,
     'rating': 1,
     'previewImage': 'img/apartment-01.jpg',
-    'description': 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
-    'bedrooms': 3,
-    'goods': [
-      'Heating'
-    ],
-    'host': {
-      'name': 'Oliver Conner',
-      'avatarUrl': 'https://url-to-image/image.png',
-      'isPro': false
-    },
-    'images': [
-      'https://url-to-image/image.png'
-    ],
-    'maxAdults': 4,
-    reviews: []
+    // 'description': 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
+    // 'bedrooms': 3,
+    // 'goods': [
+    //   'Heating'
+    // ],
+    // 'host': {
+    //   'name': 'Oliver Conner',
+    //   'avatarUrl': 'https://url-to-image/image.png',
+    //   'isPro': false
+    // },
+    // 'images': [
+    //   'https://url-to-image/image.png'
+    // ],
+    // 'maxAdults': 4,
+    // reviews: []
   }
 ];
