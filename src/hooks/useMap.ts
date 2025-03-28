@@ -1,5 +1,5 @@
 import { MutableRefObject, useEffect, useRef, useState } from 'react';
-import { OfferCommonInfoCity } from '../../types/offers';
+import { OfferCommonInfoCity } from '../types/offers';
 import leaflet from 'leaflet';
 
 export const useMap = (mapRef: MutableRefObject<HTMLDivElement | null>, city: OfferCommonInfoCity) => {
@@ -9,13 +9,7 @@ export const useMap = (mapRef: MutableRefObject<HTMLDivElement | null>, city: Of
   useEffect(() => {
     if(mapRef.current !== null && !isRenderedRef.current){
       const instance = leaflet
-        .map(mapRef.current, {
-          center: {
-            lat: city.location.latitude,
-            lng: city.location.longitude,
-          },
-          zoom: city.location.zoom,
-        });
+        .map(mapRef.current);
 
       leaflet
         .tileLayer(
@@ -29,7 +23,10 @@ export const useMap = (mapRef: MutableRefObject<HTMLDivElement | null>, city: Of
       setMap(instance);
       isRenderedRef.current = true;
     }
-  }, [mapRef, city]);
+    if (map) {
+      map.setView([city.location.latitude, city.location.longitude], city.location.zoom);
+    }
+  }, [mapRef, city, map]);
 
   return map;
 };
