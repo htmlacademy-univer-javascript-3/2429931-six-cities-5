@@ -18,9 +18,15 @@ const currentCustomIcon = getCustomIcon(URL_MARKER_CURRENT);
 export const Map = ({city, offers, selectedOfferId}: MapProps) => {
   const mapRef = useRef<HTMLDivElement | null>(null);
   const map = useMap(mapRef, city);
+  const markersRef = useRef<leaflet.Marker[]>([]);
 
   useEffect(() => {
     if (map) {
+      markersRef.current.forEach((m) => {
+        map.removeLayer(m);
+      });
+      markersRef.current = [];
+
       offers.forEach((offer) => {
         const marker = leaflet
           .marker({
@@ -31,7 +37,8 @@ export const Map = ({city, offers, selectedOfferId}: MapProps) => {
             icon: (selectedOfferId !== offer.id)
               ? defaultCustomIcon
               : currentCustomIcon
-          }).addTo(map);
+          });
+        marker.addTo(map);
 
         marker.bindPopup(`<b>${offer.title}</b><br>${offer.type}`);
 
@@ -44,6 +51,8 @@ export const Map = ({city, offers, selectedOfferId}: MapProps) => {
           marker.closePopup();
           marker.setIcon(defaultCustomIcon);
         });
+
+        markersRef.current.push(marker);
       });
     }
   }, [map, offers, selectedOfferId]);
