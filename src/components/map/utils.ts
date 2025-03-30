@@ -1,10 +1,12 @@
 import leaflet from 'leaflet';
 import { SIZE_MARKER } from './map.constants';
 
+const {w, h} = SIZE_MARKER;
+
 export const getCustomIcon = (url: string) => (
   leaflet.icon({
     iconUrl: url,
-    iconSize: [SIZE_MARKER[0], SIZE_MARKER[1]],
-    popupAnchor: [0, -SIZE_MARKER[1] / 2]
+    iconSize: [w, h],
+    popupAnchor: [0, -h / 2]
   })
 );

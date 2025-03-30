@@ -154,7 +154,7 @@ export const offersAllInfo: OfferCommonInfo[] = [
   // },
   {
     'id': '4af6f711-c28d-4121-82cd-e0b462a27f00',
-    'title': 'Beautiful & luxurious studio at great location',
+    'title': 'йййй Beautiful & luxurious studio at great location',
     'type': 'room',
     'price': 1200,
     'city': {
@@ -175,26 +175,26 @@ export const offersAllInfo: OfferCommonInfo[] = [
     'rating': 4,
     'previewImage': 'img/apartment-02.jpg',
   },{
-    'id': '6af6f711-c28d-4121-82cd-e0b462a27f00',
-    'title': 'Beautiful & luxurious studio at great location',
+    'id': '7af6f711-c28d-4121-82cd-e0b462a27f00',
+    'title': 'фффффффффф Beautiful & luxurious studio at great location',
     'type': 'room',
-    'price': 1200,
+    'price': 12000,
     'city': {
       'name': 'Amsterdam',
       'location': {
         'latitude': 52.35514938496378,
-        'longitude': 4.673877537499948,
+        'longitude': 4.573877537499948,
         'zoom': 8
       }
     },
     'location': {
-      'latitude': 52.3909553943508,
-      'longitude': 4.729309666406198,
+      'latitude': 52.2909553943508,
+      'longitude': 4.829309666406198,
       'zoom': 8
     },
     'isFavorite': true,
     'isPremium': false,
     'rating': 4,
     'previewImage': 'img/apartment-02.jpg',
-  }
+  },
 ];

@@ -6,6 +6,16 @@ import { getCustomIcon } from './utils';
 const defaultCustomIcon = getCustomIcon(URL_MARKER_DEFAULT);
 const currentCustomIcon = getCustomIcon(URL_MARKER_CURRENT);
 
+const handleMarkerMouseOver = (marker: leaflet.Marker) => {
+  marker.openPopup();
+  marker.setIcon(currentCustomIcon);
+};
+
+const handleMarkerMouseOut = (marker: leaflet.Marker) => {
+  marker.closePopup();
+  marker.setIcon(defaultCustomIcon);
+};
+
 export const getMarkerForMap = (offer: OfferCommonInfo, selectedOfferId: string) => {
   const marker = leaflet
     .marker({
@@ -22,21 +32,8 @@ export const getMarkerForMap = (offer: OfferCommonInfo, selectedOfferId: string)
   const popup = leaflet.popup().setContent(popupContent);
   marker.bindPopup(popup);
 
-  const handleMouseOver = () => {
-    marker.openPopup();
-    marker.setIcon(currentCustomIcon);
-  };
-
-  const handleMouseOut = () => {
-    marker.closePopup();
-    marker.setIcon(defaultCustomIcon);
-  };
-
-  marker.off('mouseover', handleMouseOver);
-  marker.off('mouseout', handleMouseOut);
-
-  marker.on('mouseover', handleMouseOver);
-  marker.on('mouseout', handleMouseOut);
+  marker.on('mouseover', () => handleMarkerMouseOver(marker));
+  marker.on('mouseout', () => handleMarkerMouseOut(marker));
 
   return marker;
 };

@@ -12,23 +12,23 @@ type MapProps = {
 }
 
 export const Map = ({city, offers, selectedOfferId}: MapProps) => {
-  const mapRef = useRef<HTMLDivElement | null>(null);
+  const mapRef = useRef<HTMLDivElement>(null);
   const map = useMap(mapRef, city);
-  const markersRef = useRef<leaflet.Marker[]>([]);
 
   useEffect(() => {
     if (map) {
-      markersRef.current.forEach((m) => {
-        map.removeLayer(m);
-      });
-      markersRef.current = [];
-
       offers.forEach((offer) => {
         const marker = getMarkerForMap(offer, selectedOfferId);
 
         marker.addTo(map);
-        markersRef.current.push(marker);
       });
+      return () => {
+        map.eachLayer((layer) => {
+          if (layer instanceof leaflet.Marker) {
+            map.removeLayer(layer);
+          }
+        });
+      };
     }
   }, [map, offers, city, selectedOfferId]);
 

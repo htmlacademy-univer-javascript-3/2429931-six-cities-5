@@ -14,10 +14,6 @@ type MainPageProps = {
 const MainPage = ({offers}: MainPageProps) : JSX.Element => {
   const [selectedOfferId, setSelectedOfferId] = useState<string>('');
 
-  const handleListItemHover = (listItemId: string): void => {
-    setSelectedOfferId(listItemId);
-  };
-
   return(
     <div className="page page--gray page--main">
       <Header/>
@@ -58,7 +54,7 @@ const MainPage = ({offers}: MainPageProps) : JSX.Element => {
               <div className="cities__places-list places__list tabs__content">
                 <CitiesCardsList
                   offers={offers}
-                  onListItemHover={handleListItemHover}
+                  onListItemHover={setSelectedOfferId}
                 />
               </div>
             </section>
