@@ -1,3 +1,4 @@
+import { kindCardType } from './types/card';
 import { optionsType } from './types/optionsDate';
 
 export enum AppPath {
@@ -21,3 +22,9 @@ export const OPTIONS_DATE: optionsType = {
   month: 'long',
   year: 'numeric',
 };
+
+export const KIND_CARD: kindCardType = {
+  main: 'main',
+  favorite: 'favorite',
+  near: 'near',
+} as const;
