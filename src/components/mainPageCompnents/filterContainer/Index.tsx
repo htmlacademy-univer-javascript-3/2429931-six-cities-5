@@ -4,10 +4,6 @@ import { FilterList } from '../filterList/Index';
 export const FilterContainer = () => {
   const [selectedOption, setSelectedOption] = useState<string>('Popular');
 
-  const handleOptionClick = (option: string) => {
-    setSelectedOption(option);
-  };
-
   return(
     <form className="places__sorting" action="#" method="get">
       <span className="places__sorting-caption">Sort by</span>
@@ -19,7 +15,7 @@ export const FilterContainer = () => {
       </span>
       <FilterList
         selectedOption={selectedOption}
-        onOptionClick={handleOptionClick}
+        onOptionClick={(option: string) => setSelectedOption(option)}
       />
     </form>
   );

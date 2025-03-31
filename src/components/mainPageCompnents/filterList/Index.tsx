@@ -6,9 +6,11 @@ type FilterListProps = {
   onOptionClick: (option: string) => void;
 };
 
+const arrayFilterOptions = Object.entries(FILTER_OPTIONS);
+
 export const FilterList = ({ selectedOption, onOptionClick }: FilterListProps) => (
   <ul className="places__options places__options--custom places__options--opened">
-    {Object.entries(FILTER_OPTIONS).map(([key, value]) => (
+    {arrayFilterOptions.map(([key, value]) => (
       <FilterItem
         key={key}
         option={value}

@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { memo, useMemo } from 'react';
 import {OfferCommonInfo} from '../../types/offers';
 import { getClassNamesForCard } from '../citiesCard/classNames';
 import CitiesCard from '../citiesCard/Index';
@@ -10,7 +10,7 @@ type CitiesCardsListProps = {
   isCheckingCards: {[id: string]: boolean};
 }
 
-export const CitiesCardsList = ({offers, onListItemHover, isCheckingCards}: CitiesCardsListProps) => {
+export const CitiesCardsList = memo(({offers, onListItemHover, isCheckingCards}: CitiesCardsListProps) => {
   const {isMainCard, isNearCard} = isCheckingCards;
 
   const classNamesList = classNames(
@@ -36,4 +36,6 @@ export const CitiesCardsList = ({offers, onListItemHover, isCheckingCards}: Citi
       ))}
     </div>
   );
-};
+});
+
+CitiesCardsList.displayName = 'CitiesCardsList';

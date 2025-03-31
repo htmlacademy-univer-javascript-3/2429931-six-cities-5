@@ -6,7 +6,7 @@ import { ReviewType } from '../../types/reviews';
 import { CITY } from '../../mocks/city';
 import { OfferCommonInfo } from '../../types/offers';
 import { findCurrentOfferIndex, getNearOffers} from '../../utils';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Map } from '../../components/map/Index';
 import { CitiesCardsList } from '../../components/citiesCardsList/Index';
 
@@ -19,13 +19,12 @@ export const OfferScreen = ({reviews, offers, isCheckingCards}: OfferScreenProps
   const [selectedOfferId, setSelectedOfferId] = useState<string>('');
 
   const param = useParams();
-  const currentOfferIndex = findCurrentOfferIndex(offers, param);
+  const currentOfferIndex = useMemo(() => findCurrentOfferIndex(offers, param),[offers, param]);
+  const nearOffers = useMemo(() => getNearOffers(offers, currentOfferIndex),[offers, currentOfferIndex]);
 
   if(currentOfferIndex === -1){
     return <Navigate to='/*'/>;
   }
-
-  const nearOffers = getNearOffers(offers, currentOfferIndex);
 
   return(
     <div className="page">

@@ -16,10 +16,6 @@ const MainPage = ({offers, isCheckingCards}: MainPageProps) : JSX.Element => {
   const [selectedOfferId, setSelectedOfferId] = useState<string>('');
   const [currentCity, setCurrentCity] = useState('Amsterdam');
 
-  const handleLocationClick = (city: string) => {
-    setCurrentCity(city);
-  };
-
   return(
     <div className="page page--gray page--main">
       <Header/>
@@ -28,7 +24,7 @@ const MainPage = ({offers, isCheckingCards}: MainPageProps) : JSX.Element => {
         <div className="tabs">
           <section className="locations container">
             <LocationsList
-              onLocationClick={handleLocationClick}
+              onLocationClick={(city)=>setCurrentCity(city)}
               currentCity={currentCity}
             />
           </section>

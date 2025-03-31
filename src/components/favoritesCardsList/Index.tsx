@@ -12,6 +12,7 @@ type FavoritesCardsListProps = {
 
 export const FavoritesCardsList = ({offers, isCheckingCards}: FavoritesCardsListProps) => {
   const classNamesCardOfKind = useMemo(() => getClassNamesForCard(isCheckingCards),[isCheckingCards]);
+
   return(
     <ul className="favorites__list">
       {Object.entries(groupOffersByCity(offers)).map(([city, groupedOffers])=>(
@@ -29,12 +30,8 @@ export const FavoritesCardsList = ({offers, isCheckingCards}: FavoritesCardsList
                 key={offer.id}
                 offer={offer}
                 classNamesCardOfKind={classNamesCardOfKind}
-                onMouseEnter={function (): void {
-                  throw new Error('Function not implemented.');
-                } }
-                onMouseLeave={function (): void {
-                  throw new Error('Function not implemented.');
-                } }
+                onMouseEnter={()=>{}}
+                onMouseLeave={()=>{}}
               />
             ))}
           </div>

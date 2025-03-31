@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { ReviewType, ReviewUser } from '../../types/reviews';
 import { takeNewDate } from '../../utils';
 
@@ -28,7 +29,7 @@ export const Review = ({review}: ReviewProps) => {
         <p className="reviews__text">
           {comment}
         </p>
-        <time className="reviews__time" dateTime={date}>{takeNewDate(date)}</time>
+        <time className="reviews__time" dateTime={date}>{useMemo(() => takeNewDate(date), [date])}</time>
       </div>
     </li>
   );
