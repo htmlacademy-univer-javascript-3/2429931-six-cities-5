@@ -2,18 +2,16 @@ import { Link } from 'react-router-dom';
 import { OfferCommonInfo } from '../../types/offers';
 import { PremiumCard } from '../premiumCard/Index';
 import { linkToOfferForId } from '../../utils';
-import { getClassNamesForCard } from './classNames';
 import { Rating } from '../rating/Index';
 
 type CitiesCardProps = {
   offer: OfferCommonInfo;
   onMouseEnter: () => void;
   onMouseLeave: () => void;
-  isCheckingCards: {[id:string]: boolean};
+  classNamesCardOfKind: {[id: string]: string};
 }
 
-const CitiesCard = ({offer, onMouseEnter, onMouseLeave, isCheckingCards}:CitiesCardProps): JSX.Element => {
-  const classNamesCardOfKind = getClassNamesForCard(isCheckingCards);
+const CitiesCard = ({offer, onMouseEnter, onMouseLeave, classNamesCardOfKind}:CitiesCardProps): JSX.Element => {
   const {
     classNamesCard,
     classNamesImgWrap,

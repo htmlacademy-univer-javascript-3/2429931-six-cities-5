@@ -1,4 +1,6 @@
+import { useMemo } from 'react';
 import {OfferCommonInfo} from '../../types/offers';
+import { getClassNamesForCard } from '../citiesCard/classNames';
 import CitiesCard from '../citiesCard/Index';
 import classNames from 'classnames';
 
@@ -19,6 +21,8 @@ export const CitiesCardsList = ({offers, onListItemHover, isCheckingCards}: Citi
     },
   );
 
+  const classNamesCardOfKind = useMemo(() => getClassNamesForCard(isCheckingCards),[isCheckingCards]);
+
   return(
     <div className={classNamesList}>
       {offers.map((offer)=>(
@@ -27,7 +31,7 @@ export const CitiesCardsList = ({offers, onListItemHover, isCheckingCards}: Citi
           offer={offer}
           onMouseEnter={() => onListItemHover(offer.id)}
           onMouseLeave={() => onListItemHover('')}
-          isCheckingCards={isCheckingCards}
+          classNamesCardOfKind={classNamesCardOfKind}
         />
       ))}
     </div>
