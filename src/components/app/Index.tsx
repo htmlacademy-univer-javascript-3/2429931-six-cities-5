@@ -7,12 +7,13 @@ import { OfferScreen } from '../../pages/offer/Index';
 import { NotFoundScreen } from '../../pages/notFoundScreen/Index';
 import { PrivateRoute } from '../privateRoute/Index';
 import { OfferCommonInfo } from '../../types/offers';
+import { reviews } from '../../mocks/reviews';
 
 type AppProps = {
   offers: OfferCommonInfo[];
 }
 
-const App = ({offers}: AppProps): JSX.Element => (
+export const App = ({offers}: AppProps): JSX.Element => (
   <BrowserRouter>
     <Routes>
       <Route
@@ -39,7 +40,11 @@ const App = ({offers}: AppProps): JSX.Element => (
       />
       <Route
         path={AppPath.Offer}
-        element={<OfferScreen/>}
+        element={
+          <OfferScreen
+            reviews={reviews}
+          />
+        }
       />
       <Route
         path='/*'
@@ -48,5 +53,3 @@ const App = ({offers}: AppProps): JSX.Element => (
     </Routes>
   </BrowserRouter>
 );
-
-export default App;
