@@ -5,7 +5,7 @@ import { ReviewsList } from '../../components/reviewsList/Index';
 import { ReviewType } from '../../types/reviews';
 import { CITY } from '../../mocks/city';
 import { OfferCommonInfo } from '../../types/offers';
-import { findCurrentOfferIndex, getNearOffers } from '../../utils';
+import { findCurrentOfferIndex, getNearOffers} from '../../utils';
 import { useState } from 'react';
 import { Map } from '../../components/map/Index';
 import { CitiesCardsList } from '../../components/citiesCardsList/Index';
@@ -75,7 +75,7 @@ export const OfferScreen = ({reviews, offers, isCheckingCards}: OfferScreenProps
                   <span style={{width: '80%'}}></span>
                   <span className="visually-hidden">Rating</span>
                 </div>
-                <span className="offer__rating-value rating__value">4.8</span>
+                <span className="offer__rating-value rating__value">{offers[currentOfferIndex].rating}</span>
               </div>
               <ul className="offer__features">
                 <li className="offer__feature offer__feature--entire">
