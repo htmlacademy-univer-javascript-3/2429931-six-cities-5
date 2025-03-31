@@ -42,6 +42,7 @@ export const App = ({offers}: AppProps): JSX.Element => (
         path={AppPath.Offer}
         element={
           <OfferScreen
+            offers={offers}
             reviews={reviews}
           />
         }
