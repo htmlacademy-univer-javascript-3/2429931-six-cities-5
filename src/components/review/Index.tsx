@@ -9,6 +9,9 @@ type ReviewProps = {
 export const Review = ({review}: ReviewProps) => {
   const {date, user, comment, rating} = review;
   const {name, avatarUrl}: ReviewUser = user;
+
+  const newDate = useMemo(() => takeNewDate(date), [date]);
+
   return(
     <li className="reviews__item">
       <div className="reviews__user user">
@@ -29,7 +32,7 @@ export const Review = ({review}: ReviewProps) => {
         <p className="reviews__text">
           {comment}
         </p>
-        <time className="reviews__time" dateTime={date}>{useMemo(() => takeNewDate(date), [date])}</time>
+        <time className="reviews__time" dateTime={date}>{newDate}</time>
       </div>
     </li>
   );

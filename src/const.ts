@@ -1,6 +1,3 @@
-import { kindCardType } from './types/card';
-import { optionsType } from './types/optionsDate';
-
 export enum AppPath {
   Main = '/',
   Login = '/login',
@@ -18,13 +15,7 @@ export const CITIES: string[] = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'H
 
 export const RATING_TITLES: string[] = ['terribly','badly','not bad','good','excellent'];
 
-export const OPTIONS_DATE: optionsType = {
+export const OPTIONS_DATE: Intl.DateTimeFormatOptions = {
   month: 'long',
   year: 'numeric',
 };
-
-export const KIND_CARD: kindCardType = {
-  main: 'main',
-  favorite: 'favorite',
-  near: 'near',
-} as const;

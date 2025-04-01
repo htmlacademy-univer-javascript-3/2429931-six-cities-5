@@ -13,9 +13,8 @@ import { CitiesCardsList } from '../../components/citiesCardsList/Index';
 type OfferScreenProps = {
   reviews: ReviewType[];
   offers: OfferCommonInfo[];
-  isCheckingCards: {[id: string]: boolean};
 }
-export const OfferScreen = ({reviews, offers, isCheckingCards}: OfferScreenProps): JSX.Element => {
+export const OfferScreen = ({reviews, offers}: OfferScreenProps): JSX.Element => {
   const [selectedOfferId, setSelectedOfferId] = useState<string>('');
 
   const param = useParams();
@@ -171,7 +170,7 @@ export const OfferScreen = ({reviews, offers, isCheckingCards}: OfferScreenProps
             <CitiesCardsList
               offers={nearOffers}
               onListItemHover={setSelectedOfferId}
-              isCheckingCards={isCheckingCards}
+              cardType={'near'}
             />
           </section>
         </div>

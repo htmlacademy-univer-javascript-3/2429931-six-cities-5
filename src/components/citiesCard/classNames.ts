@@ -1,37 +1,29 @@
 import classNames from 'classnames';
+import { CARD_STYLES, CARD_STYLES_BOOKMARK, CARD_STYLES_IMG_WRAP, CARD_STYLES_INFO } from './card.constants';
+import { CardType } from '../../types/card';
 
-export const getClassNamesForCard = (isCheckingCards: {[id:string]:boolean}) => {
-  const {isMainCard, isNearCard, isFavoriteCard} = isCheckingCards;
-
+export const getClassNamesForCard = (cardType: CardType) => {
   const classNamesCard = classNames(
     'place-card',
-    {
-      'cities__card' : isMainCard,
-      'favorites__card': isFavoriteCard,
-      'near-places__card places': isNearCard,
-    }
+    CARD_STYLES[cardType]
   );
 
   const classNamesImgWrap = classNames(
     'place-card__image-wrapper',
-    {
-      'cities__image-wrapper': isMainCard,
-      'favorites__image-wrapper': isFavoriteCard,
-      'near-places__image-wrapper':isNearCard,
-    },
+    CARD_STYLES_IMG_WRAP[cardType]
   );
 
-  const imgWidth = isFavoriteCard ? '150' : '260';
-  const imgHeight = isFavoriteCard ? '110' : '200';
+  const imgWidth = (cardType === 'favorite') ? '150' : '260';
+  const imgHeight = (cardType === 'favorite') ? '110' : '200';
 
   const classNamesInfo = classNames(
     'place-card__info',
-    {'favorites__card-info': isFavoriteCard},
+    CARD_STYLES_INFO[cardType]
   );
 
   const classNamesBookmark = classNames(
     'place-card__bookmark-button button',
-    {'place-card__bookmark-button--active': isFavoriteCard},
+    CARD_STYLES_BOOKMARK[cardType]
   );
 
   return{

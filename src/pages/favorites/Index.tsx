@@ -6,10 +6,9 @@ import { OfferCommonInfo } from '../../types/offers';
 
 type FavoriteScreenProps = {
   offers: OfferCommonInfo[];
-  isCheckingCards: {[id: string]: boolean};
 }
 
-export const FavoriteScreen = ({offers, isCheckingCards}: FavoriteScreenProps): JSX.Element => {
+export const FavoriteScreen = ({offers}: FavoriteScreenProps): JSX.Element => {
   const filterOffers = offers.filter((offer)=>offer.isFavorite);
 
   return(
@@ -23,7 +22,7 @@ export const FavoriteScreen = ({offers, isCheckingCards}: FavoriteScreenProps): 
               ?
               <FavoritesCardsList
                 offers={filterOffers}
-                isCheckingCards={isCheckingCards}
+                cardType={'favorite'}
               />
               : null}
           </section>

@@ -9,10 +9,9 @@ import { LocationsList } from '../../components/mainPageCompnents/locationsList/
 
 type MainPageProps = {
   offers: OfferCommonInfo[];
-  isCheckingCards: {[id: string]: boolean};
 }
 
-const MainPage = ({offers, isCheckingCards}: MainPageProps) : JSX.Element => {
+const MainPage = ({offers}: MainPageProps) : JSX.Element => {
   const [selectedOfferId, setSelectedOfferId] = useState<string>('');
   const [currentCity, setCurrentCity] = useState('Amsterdam');
 
@@ -38,7 +37,7 @@ const MainPage = ({offers, isCheckingCards}: MainPageProps) : JSX.Element => {
               <CitiesCardsList
                 offers={offers}
                 onListItemHover={setSelectedOfferId}
-                isCheckingCards={isCheckingCards}
+                cardType={'main'}
               />
             </section>
             <div className="cities__right-section">

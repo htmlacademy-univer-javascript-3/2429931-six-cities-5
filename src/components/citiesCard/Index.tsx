@@ -3,15 +3,17 @@ import { OfferCommonInfo } from '../../types/offers';
 import { PremiumCard } from '../premiumCard/Index';
 import { linkToOfferForId } from '../../utils';
 import { Rating } from '../rating/Index';
+import { CardClassKeyType } from '../../types/card';
 
 type CitiesCardProps = {
   offer: OfferCommonInfo;
   onMouseEnter: () => void;
   onMouseLeave: () => void;
-  classNamesCardOfKind: {[id: string]: string};
+  classNamesTypeCards: {[key in CardClassKeyType]: string};
 }
-
-const CitiesCard = ({offer, onMouseEnter, onMouseLeave, classNamesCardOfKind}:CitiesCardProps): JSX.Element => {
+// {[key in CardClassKeyType]: string}
+const CitiesCard = ({offer, onMouseEnter, onMouseLeave, classNamesTypeCards}:CitiesCardProps): JSX.Element => {
+  // const classNames: CardClassType = useMemo(() => getClassNamesForCard(cardType), [cardType]);
   const {
     classNamesCard,
     classNamesImgWrap,
@@ -19,7 +21,7 @@ const CitiesCard = ({offer, onMouseEnter, onMouseLeave, classNamesCardOfKind}:Ci
     imgWidth,
     classNamesInfo,
     classNamesBookmark,
-  } = classNamesCardOfKind;
+  } = classNamesTypeCards;
 
   return(
     <article className={classNamesCard}

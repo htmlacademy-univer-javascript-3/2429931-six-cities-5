@@ -2,16 +2,17 @@ import { Link } from 'react-router-dom';
 import { OfferCommonInfo} from '../../types/offers';
 import { groupOffersByCity } from '../../utils';
 import CitiesCard from '../citiesCard/Index';
-import { getClassNamesForCard } from '../citiesCard/classNames';
+import { CardClassType, CardType } from '../../types/card';
 import { useMemo } from 'react';
+import { getClassNamesForCard } from '../citiesCard/classNames';
 
 type FavoritesCardsListProps = {
   offers: OfferCommonInfo[];
-  isCheckingCards: {[id: string]: boolean};
+  cardType: CardType;
 }
 
-export const FavoritesCardsList = ({offers, isCheckingCards}: FavoritesCardsListProps) => {
-  const classNamesCardOfKind = useMemo(() => getClassNamesForCard(isCheckingCards),[isCheckingCards]);
+export const FavoritesCardsList = ({offers, cardType}: FavoritesCardsListProps) => {
+  const classNamesTypeCard: CardClassType = useMemo(() => getClassNamesForCard(cardType), [cardType]);
 
   return(
     <ul className="favorites__list">
@@ -29,7 +30,7 @@ export const FavoritesCardsList = ({offers, isCheckingCards}: FavoritesCardsList
               <CitiesCard
                 key={offer.id}
                 offer={offer}
-                classNamesCardOfKind={classNamesCardOfKind}
+                classNamesTypeCards={classNamesTypeCard}
                 onMouseEnter={()=>{}}
                 onMouseLeave={()=>{}}
               />
