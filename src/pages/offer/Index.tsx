@@ -1,29 +1,19 @@
-import { Navigate, useParams } from 'react-router-dom';
 import { CommentSubmitForm } from '../../components/commentSubmitForm/Index';
 import { Header } from '../../components/header/Index';
 import { ReviewsList } from '../../components/reviewsList/Index';
 import { ReviewType } from '../../types/reviews';
 import { CITY } from '../../mocks/city';
-import { OfferCommonInfo } from '../../types/offers';
-import { findCurrentOfferIndex, getNearOffers} from '../../utils';
-import { useMemo, useState } from 'react';
 import { Map } from '../../components/map/Index';
 import { CitiesCardsList } from '../../components/citiesCardsList/Index';
+import { offersAllInfo } from '../../mocks/offers';
+import { useState } from 'react';
 
 type OfferScreenProps = {
   reviews: ReviewType[];
-  offers: OfferCommonInfo[];
 }
-export const OfferScreen = ({reviews, offers}: OfferScreenProps): JSX.Element => {
+
+export const OfferScreen = ({reviews}: OfferScreenProps): JSX.Element => {
   const [selectedOfferId, setSelectedOfferId] = useState<string>('');
-
-  const param = useParams();
-  const currentOfferIndex = useMemo(() => findCurrentOfferIndex(offers, param),[offers, param]);
-  const nearOffers = useMemo(() => getNearOffers(offers, currentOfferIndex),[offers, currentOfferIndex]);
-
-  if(currentOfferIndex === -1){
-    return <Navigate to='/*'/>;
-  }
 
   return(
     <div className="page">
@@ -73,7 +63,7 @@ export const OfferScreen = ({reviews, offers}: OfferScreenProps): JSX.Element =>
                   <span style={{width: '80%'}}></span>
                   <span className="visually-hidden">Rating</span>
                 </div>
-                <span className="offer__rating-value rating__value">{offers[currentOfferIndex].rating}</span>
+                <span className="offer__rating-value rating__value">4.8</span>
               </div>
               <ul className="offer__features">
                 <li className="offer__feature offer__feature--entire">
@@ -159,7 +149,7 @@ export const OfferScreen = ({reviews, offers}: OfferScreenProps): JSX.Element =>
           <section className="offer__map map">
             <Map
               city={CITY}
-              offers={nearOffers}
+              offers={offersAllInfo}
               selectedOfferId={selectedOfferId}
             />
           </section>
@@ -168,7 +158,7 @@ export const OfferScreen = ({reviews, offers}: OfferScreenProps): JSX.Element =>
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <CitiesCardsList
-              offers={nearOffers}
+              offers={offersAllInfo}
               onListItemHover={setSelectedOfferId}
               cardType={'near'}
             />
