@@ -1,3 +1,5 @@
+import { DateOptions } from './types/optionsDate';
+
 export enum AppPath {
   Main = '/',
   Login = '/login',
@@ -15,7 +17,7 @@ export const CITIES: string[] = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'H
 
 export const RATING_TITLES: string[] = ['terribly','badly','not bad','good','excellent'];
 
-export const OPTIONS_DATE: Intl.DateTimeFormatOptions = {
+export const OPTIONS_DATE: DateOptions = {
   month: 'long',
   year: 'numeric',
 };

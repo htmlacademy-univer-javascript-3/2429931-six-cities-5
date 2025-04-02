@@ -3,17 +3,20 @@ import { OfferCommonInfo } from '../../types/offers';
 import { PremiumCard } from '../premiumCard/Index';
 import { linkToOfferForId } from '../../utils';
 import { Rating } from '../rating/Index';
-import { CardClassKeyType } from '../../types/card';
+import { CardClassType, CardType } from '../../types/card';
+import { useMemo } from 'react';
+import { getClassNamesForCard } from './classNames';
 
 type CitiesCardProps = {
   offer: OfferCommonInfo;
   onMouseEnter: () => void;
   onMouseLeave: () => void;
-  classNamesTypeCards: {[key in CardClassKeyType]: string};
+  cardType: CardType;
 }
-// {[key in CardClassKeyType]: string}
-const CitiesCard = ({offer, onMouseEnter, onMouseLeave, classNamesTypeCards}:CitiesCardProps): JSX.Element => {
-  // const classNames: CardClassType = useMemo(() => getClassNamesForCard(cardType), [cardType]);
+
+const CitiesCard = ({offer, onMouseEnter, onMouseLeave, cardType}:CitiesCardProps): JSX.Element => {
+  const classNamesTypeCards: CardClassType = useMemo(() => getClassNamesForCard(cardType), [cardType]);
+
   const {
     classNamesCard,
     classNamesImgWrap,

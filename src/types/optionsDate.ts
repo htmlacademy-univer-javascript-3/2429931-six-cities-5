@@ -1,4 +1,1 @@
-export type optionsType = {
-  month: 'long';
-  year: 'numeric';
-}
+export type DateOptions = Pick<Intl.DateTimeFormatOptions, 'month' | 'year'>;
