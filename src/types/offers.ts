@@ -1,4 +1,4 @@
-import { Review } from './reviews';
+import { ReviewType } from './reviews';
 import { User } from './user';
 
 export type OfferCommonInfo = {
@@ -21,7 +21,7 @@ export type OfferBigInfo = OfferCommonInfo & {
   host: OffersBigInfoHost;
   images: string[];
   maxAdults: number;
-  reviews?: Review[];
+  reviews?: ReviewType[];
 }
 
 export type OffersBigInfoHost = User

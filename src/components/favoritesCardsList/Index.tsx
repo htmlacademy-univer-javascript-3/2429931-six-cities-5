@@ -1,13 +1,15 @@
 import { Link } from 'react-router-dom';
 import { OfferCommonInfo} from '../../types/offers';
-import { FavoriteCard } from '../favoriteCard/Index';
 import { groupOffersByCity } from '../../utils';
+import CitiesCard from '../citiesCard/Index';
+import { CardType } from '../../types/card';
 
 type FavoritesCardsListProps = {
   offers: OfferCommonInfo[];
+  cardType: CardType;
 }
 
-export const FavoritesCardsList = ({offers}: FavoritesCardsListProps) => (
+export const FavoritesCardsList = ({offers, cardType}: FavoritesCardsListProps) => (
   <ul className="favorites__list">
     {Object.entries(groupOffersByCity(offers)).map(([city, groupedOffers])=>(
       <li key={city} className="favorites__locations-items">
@@ -20,9 +22,12 @@ export const FavoritesCardsList = ({offers}: FavoritesCardsListProps) => (
         </div>
         <div className="favorites__places">
           {groupedOffers.map((offer)=>(
-            <FavoriteCard
+            <CitiesCard
               key={offer.id}
               offer={offer}
+              cardType={cardType}
+              onMouseEnter={()=>{}}
+              onMouseLeave={()=>{}}
             />
           ))}
         </div>

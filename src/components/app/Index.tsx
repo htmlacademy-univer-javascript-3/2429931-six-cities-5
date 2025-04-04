@@ -1,18 +1,19 @@
 import MainPage from '../../pages/main/Index';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
-import { AppPath} from '../../const';
+import { AppPath } from '../../const';
 import { LoginScreen } from '../../pages/login/Index';
 import { FavoriteScreen } from '../../pages/favorites/Index';
 import { OfferScreen } from '../../pages/offer/Index';
 import { NotFoundScreen } from '../../pages/notFoundScreen/Index';
 import { PrivateRoute } from '../privateRoute/Index';
 import { OfferCommonInfo } from '../../types/offers';
+import { reviews } from '../../mocks/reviews';
 
 type AppProps = {
   offers: OfferCommonInfo[];
 }
 
-const App = ({offers}: AppProps): JSX.Element => (
+export const App = ({offers}: AppProps): JSX.Element => (
   <BrowserRouter>
     <Routes>
       <Route
@@ -33,13 +34,19 @@ const App = ({offers}: AppProps): JSX.Element => (
           <PrivateRoute
             authStatus
           >
-            <FavoriteScreen offers={offers}/>
+            <FavoriteScreen
+              offers={offers}
+            />
           </PrivateRoute>
         }
       />
       <Route
         path={AppPath.Offer}
-        element={<OfferScreen/>}
+        element={
+          <OfferScreen
+            reviews={reviews}
+          />
+        }
       />
       <Route
         path='/*'
@@ -48,5 +55,3 @@ const App = ({offers}: AppProps): JSX.Element => (
     </Routes>
   </BrowserRouter>
 );
-
-export default App;

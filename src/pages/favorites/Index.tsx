@@ -19,7 +19,11 @@ export const FavoriteScreen = ({offers}: FavoriteScreenProps): JSX.Element => {
           <section className="favorites">
             <h1 className="favorites__title">Saved listing</h1>
             {filterOffers.length !== 0
-              ? <FavoritesCardsList offers={filterOffers}/>
+              ?
+              <FavoritesCardsList
+                offers={filterOffers}
+                cardType={'favorite'}
+              />
               : null}
           </section>
         </div>
