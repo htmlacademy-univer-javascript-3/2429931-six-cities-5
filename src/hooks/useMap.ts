@@ -23,7 +23,7 @@ export const useMap = (mapRef: MutableRefObject<HTMLDivElement | null>, city: Of
       setMap(instance);
       isRenderedRef.current = true;
     }
-    if (map) {
+    if (map && city) {
       const { latitude, longitude, zoom } = city.location;
       map.setView(leaflet.latLng(latitude, longitude), zoom);
     }

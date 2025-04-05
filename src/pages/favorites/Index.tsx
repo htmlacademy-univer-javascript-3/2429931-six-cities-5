@@ -2,13 +2,10 @@
 import { Link } from 'react-router-dom';
 import { FavoritesCardsList } from '../../components/favoritesCardsList/Index';
 import { Header } from '../../components/header/Index';
-import { OfferCommonInfo } from '../../types/offers';
+import { useAppSelector } from '../../hooks';
 
-type FavoriteScreenProps = {
-  offers: OfferCommonInfo[];
-}
-
-export const FavoriteScreen = ({offers}: FavoriteScreenProps): JSX.Element => {
+export const FavoriteScreen = (): JSX.Element => {
+  const offers = useAppSelector((state) => state.offers);
   const filterOffers = offers.filter((offer)=>offer.isFavorite);
 
   return(

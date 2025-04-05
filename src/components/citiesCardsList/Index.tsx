@@ -1,9 +1,9 @@
 import { memo } from 'react';
-import {OfferCommonInfo} from '../../types/offers';
 import CitiesCard from '../citiesCard/Index';
 import classNames from 'classnames';
 import { CARDS_LIST_STYLE } from './cardsList.constants';
 import { CardType } from '../../types/card';
+import { OfferCommonInfo } from '../../types/offers';
 
 type CitiesCardsListProps = {
   offers: OfferCommonInfo[];
