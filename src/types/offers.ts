@@ -39,5 +39,5 @@ export type OfferCommonInfoCity = {
 }
 
 export type GroupedOffersByCity = {
-  [city in CityNameType]?: OfferCommonInfo[];
+  [city in CityNameType]: OfferCommonInfo[];
 }

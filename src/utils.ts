@@ -13,7 +13,7 @@ export const groupOffersByCity = (offers: OfferCommonInfo[]) => (
     }
     newGroupedOffers[city].push(offer);
     return newGroupedOffers;
-  }, {})
+  }, {} as GroupedOffersByCity)
 );
 
 export const takeNewDate = (date: string) => {

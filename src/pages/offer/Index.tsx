@@ -148,7 +148,7 @@ export const OfferScreen = ({reviews}: OfferScreenProps): JSX.Element => {
           </div>
           <section className="offer__map map">
             <Map
-              city={CITY}
+              cityInfo={CITY}
               offers={offersAllInfo}
               selectedOfferId={selectedOfferId}
             />
