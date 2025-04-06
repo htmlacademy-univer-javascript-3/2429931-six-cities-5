@@ -6,22 +6,15 @@ import { FavoriteScreen } from '../../pages/favorites/Index';
 import { OfferScreen } from '../../pages/offer/Index';
 import { NotFoundScreen } from '../../pages/notFoundScreen/Index';
 import { PrivateRoute } from '../privateRoute/Index';
-import { OfferCommonInfo } from '../../types/offers';
 import { reviews } from '../../mocks/reviews';
 
-type AppProps = {
-  offers: OfferCommonInfo[];
-}
-
-export const App = ({offers}: AppProps): JSX.Element => (
+export const App = (): JSX.Element => (
   <BrowserRouter>
     <Routes>
       <Route
         path={AppPath.Main}
         element={
-          <MainPage
-            offers={offers}
-          />
+          <MainPage/>
         }
       />
       <Route
@@ -34,9 +27,7 @@ export const App = ({offers}: AppProps): JSX.Element => (
           <PrivateRoute
             authStatus
           >
-            <FavoriteScreen
-              offers={offers}
-            />
+            <FavoriteScreen/>
           </PrivateRoute>
         }
       />

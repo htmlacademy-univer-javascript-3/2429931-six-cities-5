@@ -2,13 +2,19 @@
 import { Link } from 'react-router-dom';
 import { FavoritesCardsList } from '../../components/favoritesCardsList/Index';
 import { Header } from '../../components/header/Index';
-import { OfferCommonInfo } from '../../types/offers';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { loadOffers } from '../../store/actions';
+import { useEffect } from 'react';
+import { offersAllInfo } from '../../mocks/offers';
 
-type FavoriteScreenProps = {
-  offers: OfferCommonInfo[];
-}
+export const FavoriteScreen = (): JSX.Element => {
+  const dispatch = useAppDispatch();
 
-export const FavoriteScreen = ({offers}: FavoriteScreenProps): JSX.Element => {
+  useEffect(()=>{
+    dispatch(loadOffers({offers: offersAllInfo}));
+  },[dispatch]);
+
+  const offers = useAppSelector((state) => state.offers);
   const filterOffers = offers.filter((offer)=>offer.isFavorite);
 
   return(

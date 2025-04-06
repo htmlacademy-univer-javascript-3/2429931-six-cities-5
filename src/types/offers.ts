@@ -1,3 +1,4 @@
+import { CityNameType } from './city';
 import { ReviewType } from './reviews';
 import { User } from './user';
 
@@ -33,10 +34,10 @@ export type OfferCommonInfoLocation = {
 }
 
 export type OfferCommonInfoCity = {
-  name: string;
+  name: CityNameType;
   location: OfferCommonInfoLocation;
 }
 
 export type GroupedOffersByCity = {
-  [city: string]: OfferCommonInfo[];
+  [city in CityNameType]: OfferCommonInfo[];
 }

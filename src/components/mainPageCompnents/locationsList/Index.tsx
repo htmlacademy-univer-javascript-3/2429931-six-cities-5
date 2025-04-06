@@ -1,19 +1,25 @@
 import { CITIES } from '../../../const';
+import { useAppDispatch } from '../../../hooks';
+import { changeCity } from '../../../store/actions';
+import { CityNameType } from '../../../types/city';
 import { LocationsItem } from '../locationsItem/Index';
 
-type LocationsListProps = {
-  onLocationClick: (city: string) => void;
-  currentCity: string;
-}
-export const LocationsList = ({currentCity, onLocationClick}: LocationsListProps) => (
-  <ul className="locations__list tabs__list">
-    {CITIES.map((city) =>(
-      <LocationsItem
-        key={city}
-        city={city}
-        isCurrentCity={currentCity === city}
-        onCityClick={()=>onLocationClick(city)}
-      />
-    ))}
-  </ul>
-);
+export const LocationsList = () => {
+  const dispatch = useAppDispatch();
+
+  const handleLocationClick = (cityName: CityNameType) => {
+    dispatch(changeCity({cityName}));
+  };
+
+  return(
+    <ul className="locations__list tabs__list">
+      {CITIES.map((city) =>(
+        <LocationsItem
+          key={city}
+          city={city}
+          onCityClick={()=>handleLocationClick(city)}
+        />
+      ))}
+    </ul>
+  );
+};

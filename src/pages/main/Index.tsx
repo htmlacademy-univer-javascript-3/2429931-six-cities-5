@@ -1,19 +1,24 @@
 import { CitiesCardsList } from '../../components/citiesCardsList/Index';
-import { OfferCommonInfo} from '../../types/offers';
 import { Header } from '../../components/header/Index';
-import { CITY } from '../../mocks/city';
 import { Map } from '../../components/map/Index';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FilterContainer} from '../../components/mainPageCompnents/filterContainer/Index';
 import { LocationsList } from '../../components/mainPageCompnents/locationsList/Index';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { getCurrentCityOffers } from '../../utils';
+import { loadOffers } from '../../store/actions';
+import { offersAllInfo } from '../../mocks/offers';
 
-type MainPageProps = {
-  offers: OfferCommonInfo[];
-}
-
-const MainPage = ({offers}: MainPageProps) : JSX.Element => {
+const MainPage = () : JSX.Element => {
+  const dispatch = useAppDispatch();
   const [selectedOfferId, setSelectedOfferId] = useState<string>('');
-  const [currentCity, setCurrentCity] = useState('Amsterdam');
+  const currentCity = useAppSelector((state) => state.city);
+  const offers = useAppSelector((state) => state.offers);
+  const currentCityOffers = getCurrentCityOffers(offers, currentCity);
+
+  useEffect(()=>{
+    dispatch(loadOffers({offers: offersAllInfo}));
+  },[dispatch]);
 
   return(
     <div className="page page--gray page--main">
@@ -22,20 +27,17 @@ const MainPage = ({offers}: MainPageProps) : JSX.Element => {
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <section className="locations container">
-            <LocationsList
-              onLocationClick={(city)=>setCurrentCity(city)}
-              currentCity={currentCity}
-            />
+            <LocationsList/>
           </section>
         </div>
         <div className="cities">
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{offers.length} places to stay in {currentCity}</b>
+              <b className="places__found">{currentCityOffers.length} places to stay in {currentCity}</b>
               <FilterContainer/>
               <CitiesCardsList
-                offers={offers}
+                offers={currentCityOffers}
                 onListItemHover={setSelectedOfferId}
                 cardType={'main'}
               />
@@ -43,8 +45,8 @@ const MainPage = ({offers}: MainPageProps) : JSX.Element => {
             <div className="cities__right-section">
               <section className="cities__map map">
                 <Map
-                  city={CITY}
-                  offers={offers}
+                  offers={currentCityOffers}
+                  cityInfo={currentCityOffers[0]?.city}
                   selectedOfferId={selectedOfferId}
                 />
               </section>

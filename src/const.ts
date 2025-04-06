@@ -1,3 +1,4 @@
+import { CityNameType } from './types/city';
 import { DateOptions } from './types/optionsDate';
 
 export enum AppPath {
@@ -13,7 +14,7 @@ export enum AuthorizationStatus {
   Unknown = 'UNKNOWN',
 }
 
-export const CITIES: string[] = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'];
+export const CITIES: CityNameType[] = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'];
 
 export const RATING_TITLES: string[] = ['terribly','badly','not bad','good','excellent'];
 
