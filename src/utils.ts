@@ -5,16 +5,26 @@ import { CityNameType } from './types/city';
 
 export const linkToOfferForId = (offer: OfferCommonInfo) => `/offer/${offer.id}`;
 
-export const groupOffersByCity = (offers: OfferCommonInfo[]) => (
-  offers.reduce<GroupedOffersByCity>((newGroupedOffers, offer) => {
-    const city: CityNameType = offer.city.name;
-    if (!newGroupedOffers[city]){
-      newGroupedOffers[city] = [];
-    }
-    newGroupedOffers[city].push(offer);
-    return newGroupedOffers;
-  }, {} as GroupedOffersByCity)
-);
+export const groupOffersByCity = (offers: OfferCommonInfo[]) => {
+  const initialValue: GroupedOffersByCity = {
+    Paris: [],
+    Cologne: [],
+    Brussels: [],
+    Amsterdam: [],
+    Hamburg: [],
+    Dusseldorf: []
+  };
+  return(
+    offers.reduce<GroupedOffersByCity>((newGroupedOffers, offer) => {
+      const city: CityNameType = offer.city.name;
+      if (!newGroupedOffers[city]){
+        newGroupedOffers[city] = [];
+      }
+      newGroupedOffers[city].push(offer);
+      return newGroupedOffers;
+    }, initialValue)
+  );
+};
 
 export const takeNewDate = (date: string) => {
   const newDate = new Date(date);
