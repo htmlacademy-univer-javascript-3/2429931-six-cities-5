@@ -12,7 +12,7 @@ type FavoritesCardsListProps = {
 export const FavoritesCardsList = ({offers, cardType}: FavoritesCardsListProps) => (
   <ul className="favorites__list">
     {Object.entries(groupOffersByCity(offers)).map(([city, groupedOffers])=>{
-      if(groupOffersByCity.length !== 0){
+      if(groupedOffers.length !== 0){
         return(
           <li key={city} className="favorites__locations-items">
             <div className="favorites__locations locations locations--current">
