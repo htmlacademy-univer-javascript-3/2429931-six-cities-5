@@ -1,17 +1,24 @@
 import { CitiesCardsList } from '../../components/citiesCardsList/Index';
 import { Header } from '../../components/header/Index';
 import { Map } from '../../components/map/Index';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FilterContainer} from '../../components/mainPageCompnents/filterContainer/Index';
 import { LocationsList } from '../../components/mainPageCompnents/locationsList/Index';
-import { useAppSelector } from '../../hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import { getCurrentCityOffers } from '../../utils';
+import { loadOffers } from '../../store/actions';
+import { offersAllInfo } from '../../mocks/offers';
 
 const MainPage = () : JSX.Element => {
+  const dispatch = useAppDispatch();
   const [selectedOfferId, setSelectedOfferId] = useState<string>('');
   const currentCity = useAppSelector((state) => state.city);
   const offers = useAppSelector((state) => state.offers);
   const currentCityOffers = getCurrentCityOffers(offers, currentCity);
+
+  useEffect(()=>{
+    dispatch(loadOffers({offers: offersAllInfo}));
+  },[dispatch]);
 
   return(
     <div className="page page--gray page--main">
