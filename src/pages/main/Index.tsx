@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { FilterContainer} from '../../components/mainPageCompnents/filterContainer/Index';
 import { LocationsList } from '../../components/mainPageCompnents/locationsList/Index';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { getCurrentCityOffers } from '../../utils';
+import { getCurrentCityOffers, getSorter } from '../../utils';
 import { loadOffers } from '../../store/actions';
 import { offersAllInfo } from '../../mocks/offers';
 
@@ -14,7 +14,11 @@ const MainPage = () : JSX.Element => {
   const [selectedOfferId, setSelectedOfferId] = useState<string>('');
   const currentCity = useAppSelector((state) => state.city);
   const offers = useAppSelector((state) => state.offers);
-  const currentCityOffers = getCurrentCityOffers(offers, currentCity);
+  const activeSortingType = useAppSelector((state) => state.activeSortingType);
+
+  const currentCityOffersByCity = getCurrentCityOffers(offers, currentCity);
+  const sortedOfferBy = getSorter(activeSortingType);
+  const currentCityOffers = sortedOfferBy(currentCityOffersByCity);
 
   useEffect(()=>{
     dispatch(loadOffers({offers: offersAllInfo}));
