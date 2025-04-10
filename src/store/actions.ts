@@ -3,6 +3,12 @@ import { CityNameType } from '../types/city';
 import { OfferCommonInfo } from '../types/offers';
 import { FilterOptionsDescriptionType } from '../types/filter';
 
-export const changeCity = createAction<{cityName: CityNameType}>('city/change');
-export const loadOffers = createAction<{offers: OfferCommonInfo[]}>('city/loadOffers');
-export const sortOffers = createAction<{activeSortingType: FilterOptionsDescriptionType}>('city/sortOffer');
+export const changeCity = createAction<{cityName: CityNameType}>('city/changeCity');
+
+export const loadOffers = createAction<{offers: OfferCommonInfo[]}>('offers/loadOffers');
+
+export const sortOffers = createAction<{activeSortingType: FilterOptionsDescriptionType}>('offers/sortOffer');
+
+export const setError = createAction<string | null>('offers/setError');
+
+export const setOffersDataLoadingStatus = createAction<boolean>('offers/setOffersDataLoadingStatus');
