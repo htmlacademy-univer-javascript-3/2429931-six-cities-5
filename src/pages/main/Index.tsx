@@ -64,7 +64,6 @@ const MainPage = () : JSX.Element => {
                 {
                   currentCityOffers.length === 0 ||
                   <Map
-                    currentScreen={'main'}
                     offers={currentCityOffers}
                     cityInfo={currentCityOffers[0]?.city}
                     selectedOfferId={selectedOfferId}
