@@ -15,7 +15,7 @@ const MainPage = () : JSX.Element => {
   const currentCity = useAppSelector((state) => state.city);
   const offers = useAppSelector((state) => state.offers);
   const activeSortingType = useAppSelector((state) => state.activeSortingType);
-  const isQuestionsDataLoading = useAppSelector((state) => state.isOffersDataLoading);
+  const isOffersDataLoading = useAppSelector((state) => state.isOffersDataLoading);
 
   const currentCityOffersByCity = getCurrentCityOffers(offers, currentCity);
   const sortedOfferBy = getSorter(activeSortingType);
@@ -25,7 +25,7 @@ const MainPage = () : JSX.Element => {
     dispatch(fetchOffersActions());
   },[dispatch]);
 
-  if (isQuestionsDataLoading){
+  if (isOffersDataLoading){
     return <LoadingScreen/>;
   }
 
