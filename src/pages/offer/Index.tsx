@@ -2,11 +2,10 @@ import { CommentSubmitForm } from '../../components/commentSubmitForm/Index';
 import { Header } from '../../components/header/Index';
 import { ReviewsList } from '../../components/reviewsList/Index';
 import { ReviewType } from '../../types/reviews';
-import { CITY } from '../../mocks/city';
 import { Map } from '../../components/map/Index';
 import { CitiesCardsList } from '../../components/citiesCardsList/Index';
-import { offersAllInfo } from '../../mocks/offers';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
+import { useAppSelector } from '../../hooks';
 
 type OfferScreenProps = {
   reviews: ReviewType[];
@@ -14,6 +13,8 @@ type OfferScreenProps = {
 
 export const OfferScreen = ({reviews}: OfferScreenProps): JSX.Element => {
   const [selectedOfferId, setSelectedOfferId] = useState<string>('');
+  const offers = useAppSelector((state) => state.offers); //временное решение
+  const onlyFourOffers = useMemo(() => offers.slice(0,4), [offers]);
 
   return(
     <div className="page">
@@ -148,8 +149,9 @@ export const OfferScreen = ({reviews}: OfferScreenProps): JSX.Element => {
           </div>
           <section className="offer__map map">
             <Map
-              cityInfo={CITY}
-              offers={offersAllInfo}
+              currentScreen={'near'}
+              cityInfo={onlyFourOffers[0]?.city}
+              offers={onlyFourOffers}
               selectedOfferId={selectedOfferId}
             />
           </section>
@@ -158,7 +160,7 @@ export const OfferScreen = ({reviews}: OfferScreenProps): JSX.Element => {
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <CitiesCardsList
-              offers={offersAllInfo}
+              offers={onlyFourOffers}
               onListItemHover={setSelectedOfferId}
               cardType={'near'}
             />
