@@ -30,3 +30,8 @@ export const FILTER_OPTIONS = {
   top:'Top rated first',
 } as const;
 
+export const TIMEOUT_SHOW_ERROR = 5000;
+
+export enum APIRoute {
+  Offers = '/offers',
+}

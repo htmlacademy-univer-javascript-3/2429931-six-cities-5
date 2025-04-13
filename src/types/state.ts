@@ -7,6 +7,8 @@ export type State = {
   city: CityNameType;
   offers: OfferCommonInfo[];
   activeSortingType: FilterOptionsDescriptionType;
+  error: string | null;
+  isOffersDataLoading: boolean;
 }
 
 export type AppDispatch = typeof store.dispatch;
