@@ -1,5 +1,5 @@
 import MainPage from '../../pages/main/Index';
-import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import {Routes, Route} from 'react-router-dom';
 import { AppPath } from '../../const';
 import { LoginScreen } from '../../pages/login/Index';
 import { FavoriteScreen } from '../../pages/favorites/Index';
@@ -7,9 +7,11 @@ import { OfferScreen } from '../../pages/offer/Index';
 import { NotFoundScreen } from '../../pages/notFoundScreen/Index';
 import { PrivateRoute } from '../privateRoute/Index';
 import { reviews } from '../../mocks/reviews';
+import { HistoryRouter } from '../historyRouter/Index';
+import browserHistory from '../../services/browserHistory';
 
 export const App = (): JSX.Element => (
-  <BrowserRouter>
+  <HistoryRouter history={browserHistory}>
     <Routes>
       <Route
         path={AppPath.Main}
@@ -24,9 +26,7 @@ export const App = (): JSX.Element => (
       <Route
         path={AppPath.Favorites}
         element={
-          <PrivateRoute
-            authStatus
-          >
+          <PrivateRoute>
             <FavoriteScreen/>
           </PrivateRoute>
         }
@@ -44,5 +44,5 @@ export const App = (): JSX.Element => (
         element={<NotFoundScreen/>}
       />
     </Routes>
-  </BrowserRouter>
+  </HistoryRouter>
 );

@@ -34,4 +34,6 @@ export const TIMEOUT_SHOW_ERROR = 5000;
 
 export enum APIRoute {
   Offers = '/offers',
+  Login = '/login',
+  Logout = '/logout',
 }
