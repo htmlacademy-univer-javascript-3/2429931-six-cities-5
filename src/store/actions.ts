@@ -20,6 +20,8 @@ export const setError = createAction<string | null>('offers/setError');
 
 export const setOffersDataLoadingStatus = createAction<boolean>('offers/setOffersDataLoadingStatus');
 
+export const setFavoriteOffersDataLoadingStatus = createAction<boolean>('offers/setFavoriteOffersDataLoadingStatus');
+
 export const setCurrentOfferDataLoadingStatus = createAction<boolean>('offers/setCurrentOfferDataLoadingStatus');
 
 export const setCommentDataLoadingStatus = createAction<boolean>('offers/setCommentDataLoadingStatus');

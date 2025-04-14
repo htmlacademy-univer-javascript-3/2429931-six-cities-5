@@ -52,7 +52,9 @@ export const OfferScreen = (): JSX.Element => {
     goods,
     host,
     description,
-    city
+    city,
+    bedrooms,
+    maxAdults
   } = offer;
 
   return(
@@ -96,6 +98,12 @@ export const OfferScreen = (): JSX.Element => {
                 <li className="offer__feature offer__feature--entire">
                   {type}
                 </li>
+                <li className="offer__feature offer__feature--bedrooms">
+                  {bedrooms}{bedrooms > 1 ? ' Bedrooms' : ' Bedroom'}
+                </li>
+                <li className="offer__feature offer__feature--adults">
+                  Max {maxAdults} {maxAdults > 1 ? 'adults' : 'adult'}
+                </li>
               </ul>
               <div className="offer__price">
                 <b className="offer__price-value">&euro;{price}</b>
@@ -104,7 +112,7 @@ export const OfferScreen = (): JSX.Element => {
               <div className="offer__inside">
                 <h2 className="offer__inside-title">What&apos;s inside</h2>
                 <ul className="offer__inside-list">
-                  {goods.map((g) => (
+                  {goods.slice(0,6).map((g) => (
                     <li key={g} className="offer__inside-item">
                       {g}
                     </li>

@@ -3,7 +3,7 @@ import { AppDispatch, State } from '../types/state';
 import { AxiosInstance } from 'axios';
 import { OfferBigInfo, OfferCommonInfo } from '../types/offers';
 import { APIRoute, AppPath, AuthorizationStatus } from '../const';
-import { loadCurrentOffer, loadFavoriteOffers, loadOffers, redirectToRoute, requireAuthorization, setCommentDataLoadingStatus, setCurrentOfferDataLoadingStatus, setOffersDataLoadingStatus, setUser } from './actions';
+import { loadCurrentOffer, loadFavoriteOffers, loadOffers, redirectToRoute, requireAuthorization, setCommentDataLoadingStatus, setCurrentOfferDataLoadingStatus, setFavoriteOffersDataLoadingStatus, setOffersDataLoadingStatus, setUser } from './actions';
 import { AuthData } from '../types/authData';
 import { User, UserLoginData } from '../types/user';
 import { dropToken, saveToken } from '../services/token';
@@ -35,9 +35,9 @@ export const fetchFavoriteOffersActions = createAsyncThunk<void, undefined,
 }>(
   'data/fetchFavoriteOffers',
   async (_arg, {dispatch, extra: api}) => {
-    dispatch(setOffersDataLoadingStatus(true));
+    dispatch(setFavoriteOffersDataLoadingStatus(true));
     const {data} = await api.get<OfferCommonInfo[]>(APIRoute.Favorite);
-    dispatch(setOffersDataLoadingStatus(false));
+    dispatch(setFavoriteOffersDataLoadingStatus(false));
     dispatch(loadFavoriteOffers({favoriteOffers: data}));
   }
 );
@@ -50,8 +50,13 @@ export const changeFavoriteStatusAction = createAsyncThunk<void, ChangeStatusDat
   extra: AxiosInstance;
 }>(
   'favorite/change',
-  async ({id, status}, {extra: api}) => {
-    await api.post<OfferBigInfo>(`${APIRoute.Favorite}/${id}/${status}`);
+  async ({id, status}, {dispatch, extra: api}) => {
+    try {
+      await api.post<OfferCommonInfo>(`${APIRoute.Favorite}/${id}/${status}`);
+      await dispatch(fetchFavoriteOffersActions());
+    } catch {
+      processErrorHandle('you need to log in to add favorites');
+    }
   }
 );
 
@@ -94,8 +99,9 @@ export const checkAuthAction = createAsyncThunk<void, undefined,
   async (_arg, {dispatch, extra: api}) => {
     try {
       const {data} = await api.get<User>(APIRoute.Login);
-      dispatch(requireAuthorization(AuthorizationStatus.Auth));
       dispatch(setUser(data));
+      dispatch(requireAuthorization(AuthorizationStatus.Auth));
+      dispatch(fetchFavoriteOffersActions());
     } catch {
       processErrorHandle('');
       dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
@@ -111,8 +117,9 @@ export const loginAction = createAsyncThunk<void, AuthData,
 }>(
   'user/login',
   async ({login:email, password}, {dispatch, extra: api}) => {
-    const {data:{token}} = await api.post<UserLoginData>(APIRoute.Login, { email, password});
-    saveToken(token);
+    const {data} = await api.post<UserLoginData>(APIRoute.Login, { email, password});
+    saveToken(data.token);
+    dispatch(setUser(data));
     dispatch(requireAuthorization(AuthorizationStatus.Auth));
     dispatch(redirectToRoute(AppPath.Main));
   }

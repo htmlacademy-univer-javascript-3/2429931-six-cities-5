@@ -31,6 +31,13 @@ export const CommentSubmitForm = () => {
     }));
   };
 
+  const isButtonDisabled = () => {
+    if (formData.comment.length > 300 || formData.comment.length < 50 || formData.rating === 0){
+      return true;
+    }
+    return false;
+  };
+
   const handleReviewSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
     const comment = formData.comment;
@@ -66,7 +73,7 @@ export const CommentSubmitForm = () => {
         <p className="reviews__help">
           To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
         </p>
-        <button disabled={isLoading} className="reviews__submit form__submit button" type="submit">Submit</button>
+        <button disabled={isLoading || isButtonDisabled()} className="reviews__submit form__submit button" type="submit">Submit</button>
       </div>
     </form>
   );

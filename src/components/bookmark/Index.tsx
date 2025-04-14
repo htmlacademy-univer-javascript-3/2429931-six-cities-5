@@ -1,8 +1,10 @@
 import classNames from 'classnames';
 import { useState } from 'react';
-import { useAppDispatch } from '../../hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import { changeFavoriteStatusAction } from '../../store/api-actions';
 import { CardType } from '../../types/card';
+import { AppPath, AuthorizationStatus } from '../../const';
+import { useNavigate } from 'react-router-dom';
 
 type BookmarkProps = {
   cardType: 'offer' | CardType;
@@ -17,8 +19,13 @@ export const Bookmark = ({cardType, offer} : BookmarkProps) => {
 
   const [isActive, setIsActive] = useState<boolean>(isFavorite);
   const dispatch = useAppDispatch();
+  const authStatus = useAppSelector((state) => state.authorizationStatus);
+  const navigate = useNavigate();
 
   const handleBookmarkClick = () => {
+    if(authStatus === AuthorizationStatus.NoAuth){
+      navigate(AppPath.Login);
+    }
     setIsActive((prev) => !prev);
     const status = isActive === false ? 1 : 0;
     dispatch(changeFavoriteStatusAction({id, status}));

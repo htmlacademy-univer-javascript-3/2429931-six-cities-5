@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { changeCity, loadCurrentOffer, loadFavoriteOffers, loadOffers, requireAuthorization, setCommentDataLoadingStatus, setCurrentOfferDataLoadingStatus, setError, setOffersDataLoadingStatus, setUser, sortOffers } from './actions';
+import { changeCity, loadCurrentOffer, loadFavoriteOffers, loadOffers, requireAuthorization, setCommentDataLoadingStatus, setCurrentOfferDataLoadingStatus, setError, setFavoriteOffersDataLoadingStatus, setOffersDataLoadingStatus, setUser, sortOffers } from './actions';
 import { State } from '../types/state';
 import { AuthorizationStatus, FILTER_OPTIONS } from '../const';
 
@@ -12,6 +12,7 @@ const initialState: State = {
   error: null,
   isOffersDataLoading: false,
   isCurrentOfferDataLoading: false,
+  isFavoriteOffersDataLoading: false,
   isCommentDataLoading: false,
   authorizationStatus: AuthorizationStatus.Unknown,
   reviews: [],
@@ -38,6 +39,9 @@ export const reducer = createReducer(initialState,(builder) => {
     })
     .addCase(setOffersDataLoadingStatus, (state, {payload}) => {
       state.isOffersDataLoading = payload;
+    })
+    .addCase(setFavoriteOffersDataLoadingStatus, (state, {payload}) => {
+      state.isFavoriteOffersDataLoading = payload;
     })
     .addCase(setCurrentOfferDataLoadingStatus, (state, {payload}) => {
       state.isCurrentOfferDataLoading = payload;

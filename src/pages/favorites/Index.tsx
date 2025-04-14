@@ -2,22 +2,14 @@
 import { Link } from 'react-router-dom';
 import { FavoritesCardsList } from '../../components/favoritesCardsList/Index';
 import { Header } from '../../components/header/Index';
-import { useAppDispatch, useAppSelector } from '../../hooks';
-import { useEffect } from 'react';
-import { fetchFavoriteOffersActions } from '../../store/api-actions';
+import { useAppSelector } from '../../hooks';
 import { LoadingScreen } from '../loadingScreen/Index';
 
 export const FavoriteScreen = (): JSX.Element => {
-  const dispatch = useAppDispatch();
-  const isOffersDataLoading = useAppSelector((state) => state.isOffersDataLoading);
-
-  useEffect(()=>{
-    dispatch(fetchFavoriteOffersActions());
-  },[dispatch]);
-
+  const isFavoriteOffersDataLoading = useAppSelector((state) => state.isFavoriteOffersDataLoading);
   const offers = useAppSelector((state) => state.favoriteOffers);
 
-  if (isOffersDataLoading){
+  if (isFavoriteOffersDataLoading){
     return <LoadingScreen/>;
   }
 

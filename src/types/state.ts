@@ -15,6 +15,7 @@ export type State = {
   isOffersDataLoading: boolean;
   isCurrentOfferDataLoading: boolean;
   isCommentDataLoading: boolean;
+  isFavoriteOffersDataLoading: boolean;
   authorizationStatus: AuthorizationStatus;
   nearbyOffers: OfferCommonInfo[];
   reviews: ReviewType[];
