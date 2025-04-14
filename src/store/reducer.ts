@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { changeCity, loadCurrentOffer, loadFavoriteOffers, loadOffers, requireAuthorization, setCommentDataLoadingStatus, setCurrentOfferDataLoadingStatus, setError, setOffersDataLoadingStatus, sortOffers } from './actions';
+import { changeCity, loadCurrentOffer, loadFavoriteOffers, loadOffers, requireAuthorization, setCommentDataLoadingStatus, setCurrentOfferDataLoadingStatus, setError, setOffersDataLoadingStatus, setUser, sortOffers } from './actions';
 import { State } from '../types/state';
 import { AuthorizationStatus, FILTER_OPTIONS } from '../const';
 
@@ -17,6 +17,7 @@ const initialState: State = {
   reviews: [],
   nearbyOffers: [],
   favoriteOffers: [],
+  user: null,
 };
 
 export const reducer = createReducer(initialState,(builder) => {
@@ -52,5 +53,8 @@ export const reducer = createReducer(initialState,(builder) => {
     })
     .addCase(setCommentDataLoadingStatus, (state, {payload}) => {
       state.isCommentDataLoading = payload;
+    })
+    .addCase(setUser, (state, {payload}) => {
+      state.user = payload;
     });
 });

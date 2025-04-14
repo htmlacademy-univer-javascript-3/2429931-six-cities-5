@@ -4,6 +4,7 @@ import { store } from '../store';
 import { FilterOptionsDescriptionType } from './filter';
 import { AuthorizationStatus } from '../const';
 import { ReviewType } from './reviews';
+import { User } from './user';
 
 export type State = {
   city: CityNameType;
@@ -18,6 +19,7 @@ export type State = {
   nearbyOffers: OfferCommonInfo[];
   reviews: ReviewType[];
   favoriteOffers: OfferCommonInfo[];
+  user: User | null;
 }
 
 export type AppDispatch = typeof store.dispatch;

@@ -4,6 +4,7 @@ import { OfferBigInfo, OfferCommonInfo } from '../types/offers';
 import { FilterOptionsDescriptionType } from '../types/filter';
 import { AppPath, AuthorizationStatus } from '../const';
 import { ReviewType } from '../types/reviews';
+import { User } from '../types/user';
 
 export const changeCity = createAction<{cityName: CityNameType}>('city/changeCity');
 
@@ -26,3 +27,5 @@ export const setCommentDataLoadingStatus = createAction<boolean>('offers/setComm
 export const requireAuthorization = createAction<AuthorizationStatus>('user/requireAuthorization');
 
 export const redirectToRoute = createAction<AppPath>('app/redirectToRoute');
+
+export const setUser = createAction<User>('user/setUser');

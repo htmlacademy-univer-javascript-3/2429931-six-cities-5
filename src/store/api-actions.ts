@@ -3,9 +3,9 @@ import { AppDispatch, State } from '../types/state';
 import { AxiosInstance } from 'axios';
 import { OfferBigInfo, OfferCommonInfo } from '../types/offers';
 import { APIRoute, AppPath, AuthorizationStatus } from '../const';
-import { loadCurrentOffer, loadFavoriteOffers, loadOffers, redirectToRoute, requireAuthorization, setCommentDataLoadingStatus, setCurrentOfferDataLoadingStatus, setOffersDataLoadingStatus } from './actions';
+import { loadCurrentOffer, loadFavoriteOffers, loadOffers, redirectToRoute, requireAuthorization, setCommentDataLoadingStatus, setCurrentOfferDataLoadingStatus, setOffersDataLoadingStatus, setUser } from './actions';
 import { AuthData } from '../types/authData';
-import { UserLoginData } from '../types/user';
+import { User, UserLoginData } from '../types/user';
 import { dropToken, saveToken } from '../services/token';
 import { ReviewSubmit, ReviewType } from '../types/reviews';
 import { sortReviewsDateByHigh } from '../utils';
@@ -93,8 +93,9 @@ export const checkAuthAction = createAsyncThunk<void, undefined,
   'user/checkAuth',
   async (_arg, {dispatch, extra: api}) => {
     try {
-      await api.get(APIRoute.Login);
+      const {data} = await api.get<User>(APIRoute.Login);
       dispatch(requireAuthorization(AuthorizationStatus.Auth));
+      dispatch(setUser(data));
     } catch {
       processErrorHandle('');
       dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
