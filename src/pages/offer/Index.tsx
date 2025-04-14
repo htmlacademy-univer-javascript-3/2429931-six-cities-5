@@ -11,6 +11,7 @@ import { LoadingScreen } from '../loadingScreen/Index';
 import classNames from 'classnames';
 import { AuthorizationStatus } from '../../const';
 import { extractCommonInfo } from '../../utils';
+import { Bookmark } from '../../components/bookmark/Index';
 
 export const OfferScreen = (): JSX.Element => {
   const [selectedOfferId, setSelectedOfferId] = useState<string>('');
@@ -79,20 +80,10 @@ export const OfferScreen = (): JSX.Element => {
                 <h1 className="offer__name">
                   {title}
                 </h1>
-                <button
-                  className={
-                    classNames(
-                      'offer__bookmark-button button',
-                      {'place-card__bookmark-button--active':isFavorite},
-                    )
-                  }
-                  type="button"
-                >
-                  <svg className="offer__bookmark-icon" width="31" height="33">
-                    <use xlinkHref="#icon-bookmark"></use>
-                  </svg>
-                  <span className="visually-hidden">To bookmarks</span>
-                </button>
+                <Bookmark
+                  cardType={'offer'}
+                  offer={{id: offer.id, isFavorite}}
+                />
               </div>
               <div className="offer__rating rating">
                 <div className="offer__stars rating__stars">

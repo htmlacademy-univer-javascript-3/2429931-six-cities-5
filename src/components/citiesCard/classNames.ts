@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { CARD_STYLES, CARD_STYLES_BOOKMARK, CARD_STYLES_IMG_WRAP, CARD_STYLES_INFO } from './card.constants';
+import { CARD_STYLES, CARD_STYLES_IMG_WRAP, CARD_STYLES_INFO } from './card.constants';
 import { CardType } from '../../types/card';
 
 export const getClassNamesForCard = (cardType: CardType) => {
@@ -23,7 +23,6 @@ export const getClassNamesForCard = (cardType: CardType) => {
 
   const classNamesBookmark = classNames(
     'place-card__bookmark-button button',
-    CARD_STYLES_BOOKMARK[cardType]
   );
 
   return{

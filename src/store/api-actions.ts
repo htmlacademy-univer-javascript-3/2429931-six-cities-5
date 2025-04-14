@@ -10,6 +10,7 @@ import { dropToken, saveToken } from '../services/token';
 import { ReviewSubmit, ReviewType } from '../types/reviews';
 import { sortReviewsDateByHigh } from '../utils';
 import { processErrorHandle } from '../services/processErrorHandle';
+import { ChangeStatusData } from '../types/changeStatusData';
 
 export const fetchOffersActions = createAsyncThunk<void, undefined,
 {
@@ -38,6 +39,19 @@ export const fetchFavoriteOffersActions = createAsyncThunk<void, undefined,
     const {data} = await api.get<OfferCommonInfo[]>(APIRoute.Favorite);
     dispatch(setOffersDataLoadingStatus(false));
     dispatch(loadFavoriteOffers({favoriteOffers: data}));
+  }
+);
+
+
+export const changeFavoriteStatusAction = createAsyncThunk<void, ChangeStatusData,
+{
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'favorite/change',
+  async ({id, status}, {extra: api}) => {
+    await api.post<OfferBigInfo>(`${APIRoute.Favorite}/${id}/${status}`);
   }
 );
 

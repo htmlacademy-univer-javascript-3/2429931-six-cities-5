@@ -17,8 +17,3 @@ export const CARD_STYLES_INFO: Record<CardType, string> = {
   near: '',
 };
 
-export const CARD_STYLES_BOOKMARK: Record<CardType, string> = {
-  main: '',
-  favorite: 'place-card__bookmark-button--active',
-  near: '',
-};

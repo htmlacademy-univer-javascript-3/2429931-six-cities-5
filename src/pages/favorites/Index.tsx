@@ -16,7 +16,6 @@ export const FavoriteScreen = (): JSX.Element => {
   },[dispatch]);
 
   const offers = useAppSelector((state) => state.favoriteOffers);
-  const filterOffers = offers.filter((offer)=>offer.isFavorite);
 
   if (isOffersDataLoading){
     return <LoadingScreen/>;
@@ -32,7 +31,7 @@ export const FavoriteScreen = (): JSX.Element => {
             <section className="favorites">
               <h1 className="favorites__title">Saved listing</h1>
               <FavoritesCardsList
-                offers={filterOffers}
+                offers={offers}
                 cardType={'favorite'}
               />
             </section>

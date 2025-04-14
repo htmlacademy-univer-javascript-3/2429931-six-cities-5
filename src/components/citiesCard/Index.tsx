@@ -6,6 +6,7 @@ import { Rating } from '../rating/Index';
 import { CardClassType, CardType } from '../../types/card';
 import { useMemo } from 'react';
 import { getClassNamesForCard } from './classNames';
+import { Bookmark } from '../bookmark/Index';
 
 type CitiesCardProps = {
   offer: OfferCommonInfo;
@@ -23,7 +24,6 @@ const CitiesCard = ({offer, onMouseEnter, onMouseLeave, cardType}:CitiesCardProp
     imgHeight,
     imgWidth,
     classNamesInfo,
-    classNamesBookmark,
   } = classNamesTypeCards;
 
   return(
@@ -46,12 +46,10 @@ const CitiesCard = ({offer, onMouseEnter, onMouseLeave, cardType}:CitiesCardProp
             <b className="place-card__price-value">&euro;{offer.price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <button className={classNamesBookmark} type="button">
-            <svg className="place-card__bookmark-icon" width="18" height="19">
-              <use xlinkHref="#icon-bookmark"></use>
-            </svg>
-            <span className="visually-hidden">To bookmarks</span>
-          </button>
+          <Bookmark
+            cardType={cardType}
+            offer={{id: offer.id, isFavorite: offer.isFavorite}}
+          />
         </div>
         <Rating offer={offer}/>
         <h2 className="place-card__name">

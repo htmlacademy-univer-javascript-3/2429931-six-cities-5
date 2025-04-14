@@ -5,6 +5,8 @@ import { logoutAction } from '../../store/api-actions';
 
 export const Header = () => {
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const offers = useAppSelector((state) => state.favoriteOffers);
+
   const isAuth = authorizationStatus === AuthorizationStatus.Auth;
   const dispatch = useAppDispatch();
 
@@ -32,7 +34,7 @@ export const Header = () => {
                       <div className="header__avatar-wrapper user__avatar-wrapper">
                       </div>
                       <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
-                      <span className="header__favorite-count">3</span>
+                      <span className="header__favorite-count">{offers.length}</span>
                     </Link>
                   </li>
                   <li className="header__nav-item">
