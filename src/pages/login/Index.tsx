@@ -1,4 +1,4 @@
-import { FormEvent, useRef } from 'react';
+import { FormEvent, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { loginAction } from '../../store/api-actions';
@@ -25,12 +25,16 @@ export const LoginScreen = (): JSX.Element => {
 
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (authorizationStatus === AuthorizationStatus.Auth) {
+      navigate(AppPath.Main);
+    }
+  }, [authorizationStatus, navigate]);
+
   if (authorizationStatus === AuthorizationStatus.Unknown) {
     return (
       <LoadingScreen />
     );
-  } else if(authorizationStatus === AuthorizationStatus.Auth) {
-    navigate(AppPath.Main);
   }
 
   return(
