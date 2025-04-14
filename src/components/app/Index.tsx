@@ -6,7 +6,6 @@ import { FavoriteScreen } from '../../pages/favorites/Index';
 import { OfferScreen } from '../../pages/offer/Index';
 import { NotFoundScreen } from '../../pages/notFoundScreen/Index';
 import { PrivateRoute } from '../privateRoute/Index';
-import { reviews } from '../../mocks/reviews';
 import { HistoryRouter } from '../historyRouter/Index';
 import browserHistory from '../../services/browserHistory';
 
@@ -34,13 +33,11 @@ export const App = (): JSX.Element => (
       <Route
         path={AppPath.Offer}
         element={
-          <OfferScreen
-            reviews={reviews}
-          />
+          <OfferScreen/>
         }
       />
       <Route
-        path='/*'
+        path={AppPath.Other}
         element={<NotFoundScreen/>}
       />
     </Routes>

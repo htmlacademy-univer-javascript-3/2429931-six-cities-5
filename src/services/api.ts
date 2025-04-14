@@ -6,13 +6,19 @@ import { StatusCodes } from 'http-status-codes';
 type DetailMessageType = {
   type: string;
   message: string;
+  details: [{
+    property: string;
+    value: string;
+    messages: string[];
+    }];
 }
 
 const StatusCodeMapping: Record<number, boolean> =
 {
   [StatusCodes.BAD_REQUEST]: true,
   [StatusCodes.UNAUTHORIZED]: true,
-  [StatusCodes.NOT_FOUND]: true
+  [StatusCodes.NOT_FOUND]: true,
+  [StatusCodes.CONFLICT]: true,
 };
 
 const shouldDisplayError = (response: AxiosResponse) => !!StatusCodeMapping[response.status];
@@ -46,6 +52,9 @@ export const createAPI = (): AxiosInstance => {
           const detailMessage = error.response.data;
           // console.error('Ошибка при получении данных:', detailMessage);
           processErrorHandle(`Ошибка при получении данных: ${detailMessage.message}`);
+          if(detailMessage.details?.length){
+            processErrorHandle(detailMessage.details.map((d) => d.messages.join('; ')).join('; '));
+          }
         }
       } else {
         // console.error('Сетевая ошибка:', error.message);

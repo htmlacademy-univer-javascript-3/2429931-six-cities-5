@@ -1,7 +1,9 @@
 import { FormEvent, useRef } from 'react';
-import { Link } from 'react-router-dom';
-import { useAppDispatch } from '../../hooks';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import { loginAction } from '../../store/api-actions';
+import { AppPath, AuthorizationStatus } from '../../const';
+import { LoadingScreen } from '../loadingScreen/Index';
 
 export const LoginScreen = (): JSX.Element => {
   const loginRef = useRef<HTMLInputElement | null>(null);
@@ -18,6 +20,18 @@ export const LoginScreen = (): JSX.Element => {
       }));
     }
   };
+
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+
+  const navigate = useNavigate();
+
+  if (authorizationStatus === AuthorizationStatus.Unknown) {
+    return (
+      <LoadingScreen />
+    );
+  } else if(authorizationStatus === AuthorizationStatus.Auth) {
+    navigate(AppPath.Main);
+  }
 
   return(
     <div className="page page--gray page--login">

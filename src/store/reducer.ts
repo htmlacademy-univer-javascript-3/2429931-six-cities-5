@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { changeCity, loadOffers, requireAuthorization, setError, setOffersDataLoadingStatus, sortOffers } from './actions';
+import { changeCity, loadCurrentOffer, loadOffers, requireAuthorization, setCommentDataLoadingStatus, setCurrentOfferDataLoadingStatus, setError, setOffersDataLoadingStatus, sortOffers } from './actions';
 import { State } from '../types/state';
 import { AuthorizationStatus, FILTER_OPTIONS } from '../const';
 
@@ -7,10 +7,15 @@ import { AuthorizationStatus, FILTER_OPTIONS } from '../const';
 const initialState: State = {
   city: 'Paris',
   offers: [],
+  currentOffer: null,
   activeSortingType: FILTER_OPTIONS.popular,
   error: null,
   isOffersDataLoading: false,
+  isCurrentOfferDataLoading: false,
+  isCommentDataLoading: false,
   authorizationStatus: AuthorizationStatus.Unknown,
+  reviews: [],
+  nearbyOffers: [],
 };
 
 export const reducer = createReducer(initialState,(builder) => {
@@ -21,8 +26,16 @@ export const reducer = createReducer(initialState,(builder) => {
     .addCase(loadOffers, (state, {payload}) => {
       state.offers = payload.offers;
     })
+    .addCase(loadCurrentOffer, (state, {payload}) => {
+      state.currentOffer = payload.currentOffer;
+      state.reviews = payload.comments;
+      state.nearbyOffers = payload.nearbyOffers;
+    })
     .addCase(setOffersDataLoadingStatus, (state, {payload}) => {
       state.isOffersDataLoading = payload;
+    })
+    .addCase(setCurrentOfferDataLoadingStatus, (state, {payload}) => {
+      state.isCurrentOfferDataLoading = payload;
     })
     .addCase(sortOffers, (state, {payload}) => {
       state.activeSortingType = payload.activeSortingType;
@@ -32,5 +45,8 @@ export const reducer = createReducer(initialState,(builder) => {
     })
     .addCase(setError, (state, {payload}) => {
       state.error = payload;
+    })
+    .addCase(setCommentDataLoadingStatus, (state, {payload}) => {
+      state.isCommentDataLoading = payload;
     });
 });
