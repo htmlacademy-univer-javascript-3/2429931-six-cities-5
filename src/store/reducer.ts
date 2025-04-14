@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { changeCity, loadCurrentOffer, loadOffers, requireAuthorization, setCommentDataLoadingStatus, setCurrentOfferDataLoadingStatus, setError, setOffersDataLoadingStatus, sortOffers } from './actions';
+import { changeCity, loadCurrentOffer, loadFavoriteOffers, loadOffers, requireAuthorization, setCommentDataLoadingStatus, setCurrentOfferDataLoadingStatus, setError, setOffersDataLoadingStatus, sortOffers } from './actions';
 import { State } from '../types/state';
 import { AuthorizationStatus, FILTER_OPTIONS } from '../const';
 
@@ -16,6 +16,7 @@ const initialState: State = {
   authorizationStatus: AuthorizationStatus.Unknown,
   reviews: [],
   nearbyOffers: [],
+  favoriteOffers: [],
 };
 
 export const reducer = createReducer(initialState,(builder) => {
@@ -30,6 +31,9 @@ export const reducer = createReducer(initialState,(builder) => {
       state.currentOffer = payload.currentOffer;
       state.reviews = payload.comments;
       state.nearbyOffers = payload.nearbyOffers;
+    })
+    .addCase(loadFavoriteOffers, (state, {payload}) => {
+      state.favoriteOffers = payload.favoriteOffers;
     })
     .addCase(setOffersDataLoadingStatus, (state, {payload}) => {
       state.isOffersDataLoading = payload;

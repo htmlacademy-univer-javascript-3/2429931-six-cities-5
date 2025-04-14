@@ -11,6 +11,8 @@ export const loadOffers = createAction<{offers: OfferCommonInfo[]}>('offers/load
 
 export const loadCurrentOffer = createAction<{currentOffer: OfferBigInfo; nearbyOffers: OfferCommonInfo[]; comments: ReviewType[]}>('offers/loadCurrentOffer');
 
+export const loadFavoriteOffers = createAction<{favoriteOffers: OfferCommonInfo[]}>('offers/loadFavoriteOffers');
+
 export const sortOffers = createAction<{activeSortingType: FilterOptionsDescriptionType}>('offers/sortOffer');
 
 export const setError = createAction<string | null>('offers/setError');

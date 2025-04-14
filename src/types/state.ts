@@ -17,6 +17,7 @@ export type State = {
   authorizationStatus: AuthorizationStatus;
   nearbyOffers: OfferCommonInfo[];
   reviews: ReviewType[];
+  favoriteOffers: OfferCommonInfo[];
 }
 
 export type AppDispatch = typeof store.dispatch;

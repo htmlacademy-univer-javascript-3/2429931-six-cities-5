@@ -3,7 +3,7 @@ import { AppDispatch, State } from '../types/state';
 import { AxiosInstance } from 'axios';
 import { OfferBigInfo, OfferCommonInfo } from '../types/offers';
 import { APIRoute, AppPath, AuthorizationStatus } from '../const';
-import { loadCurrentOffer, loadOffers, redirectToRoute, requireAuthorization, setCommentDataLoadingStatus, setCurrentOfferDataLoadingStatus, setOffersDataLoadingStatus } from './actions';
+import { loadCurrentOffer, loadFavoriteOffers, loadOffers, redirectToRoute, requireAuthorization, setCommentDataLoadingStatus, setCurrentOfferDataLoadingStatus, setOffersDataLoadingStatus } from './actions';
 import { AuthData } from '../types/authData';
 import { UserLoginData } from '../types/user';
 import { dropToken, saveToken } from '../services/token';
@@ -23,6 +23,21 @@ export const fetchOffersActions = createAsyncThunk<void, undefined,
     const {data} = await api.get<OfferCommonInfo[]>(APIRoute.Offers);
     dispatch(setOffersDataLoadingStatus(false));
     dispatch(loadOffers({offers: data}));
+  }
+);
+
+export const fetchFavoriteOffersActions = createAsyncThunk<void, undefined,
+{
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'data/fetchFavoriteOffers',
+  async (_arg, {dispatch, extra: api}) => {
+    dispatch(setOffersDataLoadingStatus(true));
+    const {data} = await api.get<OfferCommonInfo[]>(APIRoute.Favorite);
+    dispatch(setOffersDataLoadingStatus(false));
+    dispatch(loadFavoriteOffers({favoriteOffers: data}));
   }
 );
 
