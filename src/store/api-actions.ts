@@ -11,6 +11,7 @@ import { ReviewSubmit, ReviewType } from '../types/reviews';
 import { sortReviewsDateByHigh } from '../utils';
 import { processErrorHandle } from '../services/processErrorHandle';
 import { ChangeStatusData } from '../types/changeStatusData';
+import { store } from '.';
 
 export const fetchOffersActions = createAsyncThunk<void, undefined,
 {
@@ -42,7 +43,6 @@ export const fetchFavoriteOffersActions = createAsyncThunk<void, undefined,
   }
 );
 
-
 export const changeFavoriteStatusAction = createAsyncThunk<void, ChangeStatusData,
 {
   dispatch: AppDispatch;
@@ -50,8 +50,41 @@ export const changeFavoriteStatusAction = createAsyncThunk<void, ChangeStatusDat
   extra: AxiosInstance;
 }>(
   'favorite/change',
-  async ({id, status}, {extra: api}) => {
-    await api.post<OfferCommonInfo>(`${APIRoute.Favorite}/${id}/${status}`);
+  async ({id, status, cardType}, {dispatch,extra: api}) => {
+    const {data} = await api.post<OfferCommonInfo>(`${APIRoute.Favorite}/${id}/${status}`);
+    const { offers, currentOffer, nearbyOffers, reviews: comments, favoriteOffers } = store.getState();
+
+    if(favoriteOffers.some((f) => (data.id === f.id))){
+      dispatch(loadFavoriteOffers({favoriteOffers: [...favoriteOffers.filter((f) => (data.id !== f.id))]}));
+    } else {
+      dispatch(loadFavoriteOffers({favoriteOffers: [...favoriteOffers, data]}));
+    }
+
+    switch (cardType) {
+      case 'main':
+        dispatch(loadOffers({offers: [...offers.map((n) => n.id === data.id ? { ...n, isFavorite: !n.isFavorite } : n)]}));
+        break;
+      case 'offer':
+        if (currentOffer) {
+          dispatch(loadCurrentOffer({
+            currentOffer: { ...currentOffer, isFavorite: !currentOffer.isFavorite },
+            nearbyOffers,
+            comments
+          }));
+        }
+        break;
+      case 'near':
+        if (currentOffer) {
+          dispatch(loadCurrentOffer({
+            currentOffer: currentOffer.id === id ? { ...currentOffer, isFavorite: !currentOffer.isFavorite } : currentOffer,
+            nearbyOffers: nearbyOffers.map((n) => n.id === id ? { ...n, isFavorite: !n.isFavorite } : n),
+            comments
+          }));
+        }
+        break;
+      default:
+        break;
+    }
   }
 );
 
