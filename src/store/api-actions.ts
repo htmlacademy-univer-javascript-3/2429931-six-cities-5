@@ -50,13 +50,8 @@ export const changeFavoriteStatusAction = createAsyncThunk<void, ChangeStatusDat
   extra: AxiosInstance;
 }>(
   'favorite/change',
-  async ({id, status}, {dispatch, extra: api}) => {
-    try {
-      await api.post<OfferCommonInfo>(`${APIRoute.Favorite}/${id}/${status}`);
-      await dispatch(fetchFavoriteOffersActions());
-    } catch {
-      processErrorHandle('you need to log in to add favorites');
-    }
+  async ({id, status}, {extra: api}) => {
+    await api.post<OfferCommonInfo>(`${APIRoute.Favorite}/${id}/${status}`);
   }
 );
 
@@ -70,9 +65,15 @@ export const fetchCurrentOfferActions = createAsyncThunk<void, string,
   async (id, {dispatch, extra: api}) => {
     dispatch(setCurrentOfferDataLoadingStatus(true));
     try {
-      const {data: offer} = await api.get<OfferBigInfo>(`${APIRoute.Offers}/${id}`);
-      const {data: nearbyOffers} = await api.get<OfferCommonInfo[]>(`${APIRoute.Offers}/${id}${APIRoute.Nearby}`);
-      const {data: comments} = await api.get<ReviewType[]>(`${APIRoute.Comments}/${id}`);
+      const [offerResponse, nearbyOffersResponse, commentsResponse] = await Promise.all([
+        api.get<OfferBigInfo>(`${APIRoute.Offers}/${id}`),
+        api.get<OfferCommonInfo[]>(`${APIRoute.Offers}/${id}${APIRoute.Nearby}`),
+        api.get<ReviewType[]>(`${APIRoute.Comments}/${id}`),
+      ]);
+
+      const offer = offerResponse.data;
+      const nearbyOffers = nearbyOffersResponse.data;
+      const comments = commentsResponse.data;
 
       sortReviewsDateByHigh(comments);
 
@@ -101,7 +102,6 @@ export const checkAuthAction = createAsyncThunk<void, undefined,
       const {data} = await api.get<User>(APIRoute.Login);
       dispatch(setUser(data));
       dispatch(requireAuthorization(AuthorizationStatus.Auth));
-      dispatch(fetchFavoriteOffersActions());
     } catch {
       processErrorHandle('');
       dispatch(requireAuthorization(AuthorizationStatus.NoAuth));

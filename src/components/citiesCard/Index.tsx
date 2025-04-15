@@ -48,7 +48,7 @@ const CitiesCard = ({offer, onMouseEnter, onMouseLeave, cardType}:CitiesCardProp
           </div>
           <Bookmark
             cardType={cardType}
-            offer={{id: offer.id, isFavorite: offer.isFavorite}}
+            offer={offer}
           />
         </div>
         <Rating offer={offer}/>

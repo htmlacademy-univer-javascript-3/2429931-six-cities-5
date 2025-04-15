@@ -45,7 +45,6 @@ export const OfferScreen = (): JSX.Element => {
     images,
     isPremium,
     title,
-    isFavorite,
     rating,
     type,
     price,
@@ -84,7 +83,7 @@ export const OfferScreen = (): JSX.Element => {
                 </h1>
                 <Bookmark
                   cardType={'offer'}
-                  offer={{id: offer.id, isFavorite}}
+                  offer={offer}
                 />
               </div>
               <div className="offer__rating rating">

@@ -1,4 +1,4 @@
-import {FormEvent, Fragment, useState } from 'react';
+import {FormEvent, Fragment, useMemo, useState } from 'react';
 import { RATING_TITLES } from '../../const';
 import { reviewSubmit } from '../../store/api-actions';
 import { useAppDispatch, useAppSelector } from '../../hooks';
@@ -31,12 +31,7 @@ export const CommentSubmitForm = () => {
     }));
   };
 
-  const isButtonDisabled = () => {
-    if (formData.comment.length > 300 || formData.comment.length < 50 || formData.rating === 0){
-      return true;
-    }
-    return false;
-  };
+  const isButtonDisabled = useMemo(() => formData.comment.length > 300 || formData.comment.length < 50 || formData.rating === 0, [formData.comment.length, formData.rating]);
 
   const handleReviewSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
@@ -73,7 +68,13 @@ export const CommentSubmitForm = () => {
         <p className="reviews__help">
           To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
         </p>
-        <button disabled={isLoading || isButtonDisabled()} className="reviews__submit form__submit button" type="submit">Submit</button>
+        <button
+          disabled={isLoading || isButtonDisabled}
+          className="reviews__submit form__submit button"
+          type="submit"
+        >
+          Submit
+        </button>
       </div>
     </form>
   );
