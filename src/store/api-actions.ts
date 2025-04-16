@@ -49,9 +49,9 @@ export const changeFavoriteStatusAction = createAsyncThunk<void, ChangeStatusDat
   extra: AxiosInstance;
 }>(
   'favorite/change',
-  async ({id, status, cardType}, {dispatch,extra: api, getState}) => {
+  async ({id, status}, {dispatch,extra: api, getState}) => {
     const {data} = await api.post<OfferCommonInfo>(`${APIRoute.Favorite}/${id}/${status}`);
-    const { offers, currentOffer, nearbyOffers, reviews: comments, favoriteOffers } = getState();
+    const { favoriteOffers } = getState();
 
     if(favoriteOffers.some((f) => (data.id === f.id))){
       dispatch(loadFavoriteOffers({favoriteOffers: [...favoriteOffers.filter((f) => (data.id !== f.id))]}));
