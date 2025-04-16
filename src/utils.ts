@@ -1,8 +1,9 @@
 import { Params } from 'react-router-dom';
 import { OPTIONS_DATE, FILTER_OPTIONS } from './const';
-import { GroupedOffersByCity, OfferCommonInfo } from './types/offers';
+import { GroupedOffersByCity, OfferBigInfo, OfferCommonInfo } from './types/offers';
 import { CityNameType } from './types/city';
 import { FilterOptionsDescriptionType } from './types/filter';
+import { ReviewType } from './types/reviews';
 
 export const linkToOfferForId = (offer: OfferCommonInfo) => `/offer/${offer.id}`;
 
@@ -25,6 +26,23 @@ export const groupOffersByCity = (offers: OfferCommonInfo[]) => {
       return newGroupedOffers;
     }, initialValue)
   );
+};
+
+export const extractCommonInfo = (offer: OfferBigInfo): OfferCommonInfo => {
+  const { id, title, type, price, city, location, isFavorite, isPremium, rating, images } = offer;
+
+  return {
+    id,
+    title,
+    type,
+    price,
+    city,
+    location,
+    isFavorite,
+    isPremium,
+    rating,
+    previewImage: images[0],
+  };
 };
 
 export const takeNewDate = (date: string) => {
@@ -60,3 +78,5 @@ export const getSorter = (sortByType: FilterOptionsDescriptionType) => {
       return sortOfferByDefault;
   }
 };
+
+export const sortReviewsDateByHigh = (comments: ReviewType[]) => (comments.sort((a, b) => (Date.parse(b.date) - Date.parse(a.date))));

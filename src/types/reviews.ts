@@ -9,3 +9,5 @@ export type ReviewType = {
 }
 
 export type ReviewUser = User
+
+export type ReviewSubmit = Pick<ReviewType, 'comment' | 'rating'> & {id: string};
