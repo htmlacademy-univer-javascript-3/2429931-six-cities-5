@@ -11,8 +11,6 @@ type FormData = {
 
 type FieldName = keyof FormData;
 
-const ratings: number[] = [5,4,3,2,1];
-
 export const CommentSubmitForm = () => {
   const [formData, setFormData] = useState<FormData>({
     comment: '',
@@ -46,12 +44,12 @@ export const CommentSubmitForm = () => {
     <form onSubmit={handleReviewSubmit} className="reviews__form form" action="#" method="post">
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
-        {ratings.map((rating) => (
+        {RATING_TITLES.map((rating, ind) => (
           <Fragment key={rating}>
-            <input disabled={isLoading} className="form__rating-input visually-hidden" name="rating" value={rating} id={`${rating}-stars`} type="radio"
+            <input disabled={isLoading} className="form__rating-input visually-hidden" name="rating" value={5 - ind} id={`${5 - ind}-stars`} type="radio"
               onChange={handleFieldChange}
             />
-            <label htmlFor={`${rating}-stars`} className="reviews__rating-label form__rating-label" title={RATING_TITLES[rating - 1]}>
+            <label htmlFor={`${5 - ind}-stars`} className="reviews__rating-label form__rating-label" title={rating}>
               <svg className="form__star-image" width="37" height="33">
                 <use xlinkHref="#icon-star"></use>
               </svg>

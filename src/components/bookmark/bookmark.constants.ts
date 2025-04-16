@@ -7,3 +7,8 @@ export const HEIGHT_BOOKMARK = {
   'offer': 33,
   'other': 19,
 };
+
+export enum StatusOffer {
+  Add = 1,
+  Delete = 0,
+}

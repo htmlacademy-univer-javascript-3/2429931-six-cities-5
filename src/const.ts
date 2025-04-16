@@ -17,7 +17,7 @@ export enum AuthorizationStatus {
 
 export const CITIES: CityNameType[] = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'];
 
-export const RATING_TITLES: string[] = ['terribly','badly','not bad','good','excellent'];
+export const RATING_TITLES: string[] = ['excellent', 'good', 'not bad', 'badly', 'terribly'];
 
 export const OPTIONS_DATE: DateOptions = {
   month: 'long',

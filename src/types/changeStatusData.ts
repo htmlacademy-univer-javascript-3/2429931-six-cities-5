@@ -1,4 +1,5 @@
-import { CardType, StatusOffer } from './card';
+import { StatusOffer } from '../components/bookmark/bookmark.constants';
+import { CardType} from './card';
 
 export type ChangeStatusData = {
   id: string;

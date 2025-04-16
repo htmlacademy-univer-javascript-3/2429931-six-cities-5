@@ -12,6 +12,7 @@ import classNames from 'classnames';
 import { AuthorizationStatus } from '../../const';
 import { extractCommonInfo } from '../../utils';
 import { Bookmark } from '../../components/bookmark/Index';
+import { MAX_COUNT_NEAR_OFFERS, MAX_COUNT_REVIEWS, MAX_COUNT_IMG_OFFER } from './offer.constants';
 
 export const OfferScreen = (): JSX.Element => {
   const [selectedOfferId, setSelectedOfferId] = useState<string>('');
@@ -21,8 +22,8 @@ export const OfferScreen = (): JSX.Element => {
   const nearby = useAppSelector((state) => state.nearbyOffers);
   const reviews = useAppSelector((state) => state.reviews);
 
-  const selectNearOffers = useMemo(() => nearby.slice(0,3), [nearby]);
-  const selectReviews = useMemo(() => reviews.slice(0,10), [reviews]);
+  const selectNearOffers = useMemo(() => nearby.slice(0,MAX_COUNT_NEAR_OFFERS), [nearby]);
+  const selectReviews = useMemo(() => reviews.slice(0,MAX_COUNT_REVIEWS), [reviews]);
 
   const isOfferDataLoading = useAppSelector((state) => state.isCurrentOfferDataLoading);
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
@@ -111,7 +112,7 @@ export const OfferScreen = (): JSX.Element => {
               <div className="offer__inside">
                 <h2 className="offer__inside-title">What&apos;s inside</h2>
                 <ul className="offer__inside-list">
-                  {goods.slice(0,6).map((g) => (
+                  {goods.slice(0,MAX_COUNT_IMG_OFFER).map((g) => (
                     <li key={g} className="offer__inside-item">
                       {g}
                     </li>

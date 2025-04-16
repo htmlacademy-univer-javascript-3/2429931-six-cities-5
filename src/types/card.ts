@@ -9,5 +9,3 @@ export type CardClassType = {
   classNamesBookmark: string;
 }
 export type CardClassKeyType = keyof CardClassType;
-
-export type StatusOffer = 0 | 1;

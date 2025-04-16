@@ -4,7 +4,7 @@ import { changeFavoriteStatusAction } from '../../store/api-actions';
 import { CardType } from '../../types/card';
 import { AppPath, AuthorizationStatus } from '../../const';
 import { useNavigate } from 'react-router-dom';
-import { HEIGHT_BOOKMARK, WIDTH_BOOKMARK } from './bookmark.constants';
+import { HEIGHT_BOOKMARK, StatusOffer, WIDTH_BOOKMARK } from './bookmark.constants';
 import { OfferCommonInfo } from '../../types/offers';
 
 type BookmarkProps = {
@@ -24,7 +24,7 @@ export const Bookmark = ({cardType, offer} : BookmarkProps) => {
       navigate(AppPath.Login);
       return;
     }
-    const status = isFavorite === false ? 1 : 0;
+    const status = isFavorite === false ? StatusOffer.Add : StatusOffer.Delete;
     dispatch(changeFavoriteStatusAction({id, status, cardType}));
   };
 
