@@ -58,32 +58,6 @@ export const changeFavoriteStatusAction = createAsyncThunk<void, ChangeStatusDat
     } else {
       dispatch(loadFavoriteOffers({favoriteOffers: [...favoriteOffers, data]}));
     }
-
-    switch (cardType) {
-      case 'main':
-        dispatch(loadOffers({offers: [...offers.map((n) => n.id === data.id ? { ...n, isFavorite: !n.isFavorite } : n)]}));
-        break;
-      case 'offer':
-        if (currentOffer) {
-          dispatch(loadCurrentOffer({
-            currentOffer: { ...currentOffer, isFavorite: !currentOffer.isFavorite },
-            nearbyOffers,
-            comments
-          }));
-        }
-        break;
-      case 'near':
-        if (currentOffer) {
-          dispatch(loadCurrentOffer({
-            currentOffer: currentOffer.id === id ? { ...currentOffer, isFavorite: !currentOffer.isFavorite } : currentOffer,
-            nearbyOffers: nearbyOffers.map((n) => n.id === id ? { ...n, isFavorite: !n.isFavorite } : n),
-            comments
-          }));
-        }
-        break;
-      default:
-        break;
-    }
   }
 );
 

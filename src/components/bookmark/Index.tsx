@@ -13,7 +13,11 @@ type BookmarkProps = {
 }
 export const Bookmark = ({cardType, offer} : BookmarkProps) => {
   const isOffer = cardType === 'offer';
-  const {id, isFavorite} = offer;
+  const {id} = offer;
+
+  const favoriteOffers = useAppSelector((state) => state.favoriteOffers);
+
+  const isFavorite = favoriteOffers.some((f)=> f.id === id);
 
   const dispatch = useAppDispatch();
   const authStatus = useAppSelector((state) => state.authorizationStatus);
