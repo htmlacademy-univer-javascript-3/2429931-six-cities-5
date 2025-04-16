@@ -1,26 +1,41 @@
-import { FormEvent, useEffect } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { fetchFavoriteOffersActions, loginAction } from '../../store/api-actions';
+import { loginAction } from '../../store/api-actions';
 import { AppPath, AuthorizationStatus } from '../../const';
 import { LoadingScreen } from '../loadingScreen/Index';
 
+type FormData = {
+  email: string;
+  password: string;
+}
+
+type FieldName = keyof FormData;
+
 export const LoginScreen = (): JSX.Element => {
+  const [formData, setFormData] = useState<FormData>({
+    email: '',
+    password: '',
+  });
+
+  const handleFieldChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const {name, value} = event.target as HTMLInputElement & {name: FieldName};
+    setFormData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
   const dispatch = useAppDispatch();
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
-    const formData = new FormData(evt.currentTarget);
-    const email = formData.get('email')?.toString();
-    const password = formData.get('password')?.toString();
-
-    if(email && password){
+    if(formData.email && formData.password){
       dispatch(loginAction({
-        login: email,
-        password: password,
-      }))
-        .then(()=>dispatch(fetchFavoriteOffersActions()));
+        login: formData.email,
+        password: formData.password,
+      }));
     }
   };
 
@@ -71,6 +86,7 @@ export const LoginScreen = (): JSX.Element => {
                   type="email"
                   name="email"
                   placeholder="Email"
+                  onChange={handleFieldChange}
                   required
                 />
               </div>
@@ -82,6 +98,7 @@ export const LoginScreen = (): JSX.Element => {
                   name="password"
                   placeholder="Password (1 or more number and symbol)"
                   pattern='(?=.*\d)(?=.*[a-zA-Z]).+'
+                  onChange={handleFieldChange}
                   required
                 />
               </div>

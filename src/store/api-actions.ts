@@ -11,7 +11,6 @@ import { ReviewSubmit, ReviewType } from '../types/reviews';
 import { sortReviewsDateByHigh } from '../utils';
 import { processErrorHandle } from '../services/processErrorHandle';
 import { ChangeStatusData } from '../types/changeStatusData';
-import { store } from '.';
 
 export const fetchOffersActions = createAsyncThunk<void, undefined,
 {
@@ -50,9 +49,9 @@ export const changeFavoriteStatusAction = createAsyncThunk<void, ChangeStatusDat
   extra: AxiosInstance;
 }>(
   'favorite/change',
-  async ({id, status, cardType}, {dispatch,extra: api}) => {
+  async ({id, status, cardType}, {dispatch,extra: api, getState}) => {
     const {data} = await api.post<OfferCommonInfo>(`${APIRoute.Favorite}/${id}/${status}`);
-    const { offers, currentOffer, nearbyOffers, reviews: comments, favoriteOffers } = store.getState();
+    const { offers, currentOffer, nearbyOffers, reviews: comments, favoriteOffers } = getState();
 
     if(favoriteOffers.some((f) => (data.id === f.id))){
       dispatch(loadFavoriteOffers({favoriteOffers: [...favoriteOffers.filter((f) => (data.id !== f.id))]}));
