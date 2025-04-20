@@ -6,6 +6,7 @@ export enum AppPath {
   Login = '/login',
   Favorites = '/favorites',
   Offer = '/offer/:id',
+  Other = '/*'
 }
 
 export enum AuthorizationStatus {
@@ -16,7 +17,7 @@ export enum AuthorizationStatus {
 
 export const CITIES: CityNameType[] = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'];
 
-export const RATING_TITLES: string[] = ['terribly','badly','not bad','good','excellent'];
+export const RATING_TITLES: string[] = ['excellent', 'good', 'not bad', 'badly', 'terribly'];
 
 export const OPTIONS_DATE: DateOptions = {
   month: 'long',
@@ -30,8 +31,13 @@ export const FILTER_OPTIONS = {
   top:'Top rated first',
 } as const;
 
-export const TIMEOUT_SHOW_ERROR = 5000;
+export const TIMEOUT_SHOW_ERROR = 2000;
 
 export enum APIRoute {
   Offers = '/offers',
+  Login = '/login',
+  Logout = '/logout',
+  Nearby = '/nearby',
+  Comments = '/comments',
+  Favorite = '/favorite',
 }
